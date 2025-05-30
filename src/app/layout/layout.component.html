@@ -1,0 +1,21 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="side" opened>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/dashboard">Início</a>
+      <a mat-list-item routerLink="/usuarios">Usuários</a>
+      <a mat-list-item routerLink="#">Relatórios</a>
+      <a mat-list-item routerLink="/login">Sair</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <mat-icon>dashboard</mat-icon>
+      <span class="toolbar-title">Dashboard - Bem-vindo, {{ user }}</span>
+    </mat-toolbar>
+
+    <div class="content">
+      <router-outlet></router-outlet> <!-- ✅ conteúdo dinâmico aparece aqui -->
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
