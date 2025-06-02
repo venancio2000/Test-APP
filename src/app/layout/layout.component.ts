@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-layout',
@@ -25,7 +26,13 @@ import { MatCardModule } from '@angular/material/card';
 export class LayoutComponent {
   user: string;
 
-  constructor(){
+  constructor(private authService: AuthService, private router: Router){
     this.user = localStorage.getItem('nomeUsuario') || 'Usuário';
   }
+
+  sair(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
+
 }
