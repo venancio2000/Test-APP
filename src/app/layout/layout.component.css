@@ -83,6 +83,7 @@ h2 .verde {
 .logos {
   display: flex;
   gap: 2.5rem;
+  margin-right: 2%;
 }
 
 .logo-rs-talentos {
