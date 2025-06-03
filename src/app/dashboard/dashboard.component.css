@@ -1,16 +1,7 @@
-.sidenav-container {
-  height: 100vh;
-  background-color: #BFD5D5;
-}
-
 mat-toolbar {
   position: sticky;
   top: 0;
   z-index: 1000;
-}
-
-.toolbar-title {
-  margin-left: 10px;
 }
 
 .content {
@@ -18,8 +9,10 @@ mat-toolbar {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
   padding: 20px;
+  background-color: #BFD5D5;
 }
 
 .card {
   padding: 10px;
+  background-color: #fff;
 }
