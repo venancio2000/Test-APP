@@ -9,8 +9,10 @@
       </div>
       <div class="content">
         <mat-card class="card">
-          <mat-card-title>Beneficiários Cadastrados</mat-card-title>
-          <mat-card-content>128</mat-card-content>
+          <canvasjs-chart
+            [options]="chartOptions"
+            [styles]="{ width: '100%', height: '400px' }"
+          ></canvasjs-chart>
         </mat-card>
 
         <mat-card class="card">

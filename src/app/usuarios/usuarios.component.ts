@@ -31,9 +31,9 @@ export class UsuariosComponent implements OnInit {
   ngOnInit(): void {
     // Simulação de dados
     this.usuarios = [
-      { id: 1, name: 'Alice', email: 'alice@email.com', role: 'ADMIN' },
-      { id: 2, name: 'Bruno', email: 'bruno@email.com', role: 'ADMIN' },
-      { id: 3, name: 'Carla', email: 'carla@email.com', role: 'ADMIN' }
+      { id: 1, name: 'Alexandre', email: 'alexandre@spezi.com', role: 'ADMIN' },
+      { id: 2, name: 'João', email: 'joao@spezi.com', role: 'ADMIN' },
+      { id: 3, name: 'Rodrigo', email: 'rodrigo@spezi.com', role: 'ADMIN' }
     ];
   }
 }

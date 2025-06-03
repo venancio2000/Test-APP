@@ -83,6 +83,7 @@ h2 .verde {
 .logos {
   display: flex;
   gap: 2.5rem;
+  margin-right: 2%;
 }
 
 .logo-rs-talentos {
@@ -150,4 +151,8 @@ footer .logo-estado {
 
 .font14{
   font-size: 14px;
+}
+
+.menu {
+  background-color: #00564c;
 }
