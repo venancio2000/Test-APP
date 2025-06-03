@@ -27,11 +27,6 @@ export interface data {
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements data {
-  user: string;
-
-  constructor(){
-    this.user = localStorage.getItem('nomeUsuario') || 'Usuário';
-  }
 
   chart: any;
 	isButtonVisible = false;

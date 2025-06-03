@@ -18,15 +18,20 @@ import { AuthService } from '../auth.service';
     MatToolbarModule,
     MatIconModule,
     MatListModule,
-    MatCardModule
+    MatCardModule,
   ],
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.css']
+  styleUrls: ['./layout.component.css'],
 })
 export class LayoutComponent {
   user: string;
+  submenuOpen: string | null = null;
 
-  constructor(private authService: AuthService, private router: Router){
+  toggleSubmenu(menu: string): void {
+    this.submenuOpen = this.submenuOpen === menu ? null : menu;
+  }
+
+  constructor(private authService: AuthService, private router: Router) {
     this.user = localStorage.getItem('nomeUsuario') || 'Usuário';
   }
 
@@ -34,5 +39,4 @@ export class LayoutComponent {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
-
 }
