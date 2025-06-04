@@ -5,7 +5,6 @@ import { NgModule } from '@angular/core';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { LayoutComponent } from './layout/layout.component';
-import { PerfisComponent } from './perfis/perfis.component';
 
 export const routes: Routes = [
   {
@@ -14,7 +13,6 @@ export const routes: Routes = [
     children: [
       { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
       { path: 'usuarios', component: UsuariosComponent, canActivate: [AuthGuard] },
-      { path: 'perfis', component: PerfisComponent, canActivate: [AuthGuard] },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   },
