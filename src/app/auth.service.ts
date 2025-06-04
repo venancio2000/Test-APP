@@ -22,12 +22,14 @@ export class AuthService {
     return localStorage.getItem(this.TOKEN_KEY);
   }
 
-  private nomeUsuarioSubject = new BehaviorSubject<string>('Usuário');
+  private nomeUsuarioSubject = new BehaviorSubject<string>(
+    localStorage.getItem('nomeUsuario') || 'Usuário'
+  );
   nomeUsuario$ = this.nomeUsuarioSubject.asObservable();
 
   setNomeUsuario(nome: string) {
-    this.nomeUsuarioSubject.next(nome);
     localStorage.setItem('nomeUsuario', nome);
+    this.nomeUsuarioSubject.next(nome);
   }
 
   getNomeUsuario() {
