@@ -9,6 +9,7 @@ import {
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfigService } from '../../config/config.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,8 @@ export class LoginComponent {
     private http: HttpClient,
     private router: Router,
     private snackBar: MatSnackBar,
-    private config: ConfigService
+    private config: ConfigService,
+    private authService: AuthService
   ) {}
 
   fazerLogin() {
@@ -52,6 +54,7 @@ export class LoginComponent {
               .subscribe({
                 next: (user) => {
                   localStorage.setItem('nomeUsuario', user.nome);
+                  this.authService.setNomeUsuario(user.nome);
                 },
                 error: (err) => {
                   this.snackBar.open('Erro ao buscar usuário', 'Fechar', {
