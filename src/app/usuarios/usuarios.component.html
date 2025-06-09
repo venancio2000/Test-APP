@@ -3,8 +3,22 @@
     <div class="container">
       <div class="content">
         <mat-toolbar>
-          <mat-icon>account_circle</mat-icon>
-          <span class="toolbar-title">Lista de usuários</span>
+          <div class="toolbar-left">
+            <mat-icon>account_circle</mat-icon>
+            <span class="toolbar-title">Lista de usuários</span>
+          </div>
+
+          <div class="toolbar-right">
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="abrirCadastro()"
+              class="modern-button"
+            >
+              <mat-icon class="icon-user">add</mat-icon>
+              <span>Novo Usuário</span>
+            </button>
+          </div>
         </mat-toolbar>
       </div>
       <div class="content">
