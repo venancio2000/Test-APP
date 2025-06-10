@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
 import { ConfigService } from '../../config/config.service';
+import { UsuarioModel } from '../models/usuario.model';
 
 interface Usuario {
   id: number;
@@ -60,12 +61,12 @@ export class UsuarioService {
    * @param usuario Dados do usuário
    * @returns Observable com o usuário criado
    */
-  criarUsuario(usuario: Omit<Usuario, 'id'>): Observable<Usuario> {
-    return this.http.post<Usuario>(
+  salvarUsuario(usuario: Omit<UsuarioModel, 'id'>): Observable<UsuarioModel> {
+    return this.http.post<UsuarioModel>(
       `${this.config.apiUrl}/${this.endpoint}`,
       usuario
     ).pipe(
-      catchError(this.handleError<Usuario>('criarUsuario'))
+      catchError(this.handleError<UsuarioModel>('criarUsuario'))
     );
   }
 
@@ -111,5 +112,9 @@ export class UsuarioService {
       // Mantém a aplicação rodando retornando um resultado vazio
       return of(result as T);
     };
+  }
+
+  listarPerfis(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.config.apiUrl}/perfis`);
   }
 }

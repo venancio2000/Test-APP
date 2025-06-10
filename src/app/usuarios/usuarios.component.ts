@@ -9,7 +9,6 @@ import { UsuarioService } from '../services/usuario.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
-import { HttpClient, provideHttpClient, withFetch } from '@angular/common/http';
 
 interface Usuario {
   id: number;
@@ -48,11 +47,9 @@ export class UsuariosComponent implements OnInit {
     private usuarioService: UsuarioService,
     private snackBar: MatSnackBar
   ) {
-    console.log('Serviço injetado:', this.usuarioService);
   }
 
   ngOnInit(): void {
-    console.log('Componente inicializado');
     this.carregarListaUsuarios();
   }
 
@@ -60,7 +57,6 @@ export class UsuariosComponent implements OnInit {
     console.log('Método carregarListaUsuarios chamado');
     this.usuarioService.getUsuarios().subscribe({
       next: (data) => {
-        console.log('Dados recebidos:', data);
         this.usuarios = data;
         this.loading = false;
       },
@@ -68,13 +64,12 @@ export class UsuariosComponent implements OnInit {
         this.error = 'Falha ao carregar usuários';
         this.loading = false;
         this.mostrarErro('Erro ao carregar usuários');
-        console.error(err);
       },
     });
   }
 
   abrirCadastro(): void {
-    this.router.navigate(['/usuarios/novo']);
+    this.router.navigate(['/usuarios/cadastrar-usuario']);
   }
 
   editarUsuario(id: number): void {

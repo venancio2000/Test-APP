@@ -1,0 +1,24 @@
+.content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  background-color: #BFD5D5;
+}
+
+table {
+  width: 100%;
+}
+
+.toolbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.toolbar-right {
+  margin-left: auto; /* Empurra para a direita */
+}
+
+.toolbar-title {
+  margin-left: 8px;
+}

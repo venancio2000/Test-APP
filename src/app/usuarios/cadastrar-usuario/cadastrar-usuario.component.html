@@ -1,0 +1,101 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav-content>
+    <div class="container">
+      <div class="content">
+        <mat-toolbar>
+          <div class="toolbar-left">
+            <mat-icon>account_circle</mat-icon>
+            <span class="toolbar-title">Cadastro de usuários</span>
+          </div>
+          <div class="toolbar-right">
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="voltar()"
+              class="modern-button"
+            >
+              <mat-icon class="icon-user">arrow_back</mat-icon>
+              <span>Voltar</span>
+            </button>
+          </div>
+        </mat-toolbar>
+      </div>
+
+      <div class="content">
+        <form [formGroup]="form" (ngSubmit)="salvar()" class="usuario-form">
+          <mat-form-field appearance="fill">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="nome" required />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username" required />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>CPF</mat-label>
+            <input matInput formControlName="cpf" required />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" required type="email" />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Telefone Fixo</mat-label>
+            <input matInput formControlName="telefoneFixo" />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Telefone Celular</mat-label>
+            <input matInput formControlName="telefoneCelular" />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Sexo</mat-label>
+            <mat-select formControlName="sexo" required>
+              <mat-option value="M">Masculino</mat-option>
+              <mat-option value="F">Feminino</mat-option>
+              <mat-option value="O">Outro</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Data de Nascimento</mat-label>
+            <input matInput formControlName="dataNascimento" type="date" />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Senha</mat-label>
+            <input
+              matInput
+              formControlName="password"
+              type="password"
+              required
+            />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Perfil</mat-label>
+            <mat-select formControlName="perfil" required>
+              <mat-option *ngFor="let p of perfis" [value]="p">{{
+                p.nome
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="form.invalid"
+          >
+            Salvar
+          </button>
+        </form>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
