@@ -37,7 +37,7 @@ interface Usuario {
   styleUrls: ['./usuarios.component.css'],
 })
 export class UsuariosComponent implements OnInit {
-  colunas: string[] = ['id', 'name', 'email', 'nomePerfil', 'acoes'];
+  colunas: string[] = ['id', 'name', 'email', 'dataNascimento', 'sexo', 'nomePerfil', 'acoes'];
   usuarios: Usuario[] = [];
   loading = true;
   error = '';
