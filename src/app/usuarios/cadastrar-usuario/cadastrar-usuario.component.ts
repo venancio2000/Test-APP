@@ -16,6 +16,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-usuario-form',
@@ -66,7 +67,6 @@ export class CadastrarUsuarioComponent implements OnInit {
   salvar(): void {
     if (this.form.valid) {
       const usuario: UsuarioModel = this.form.value as UsuarioModel;
-      console.log('Enviando usuário:', usuario);
       this.usuarioService.salvarUsuario(usuario).subscribe(() => {
         alert('Usuário salvo com sucesso!');
         this.form.reset();

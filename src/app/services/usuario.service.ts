@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
 import { ConfigService } from '../../config/config.service';
@@ -27,7 +27,9 @@ export class UsuarioService {
    * @param params Parâmetros de filtro (opcional)
    * @returns Observable com array de usuários
    */
-  getUsuarios(params?: { [key: string]: string | number }): Observable<Usuario[]> {
+  getUsuarios(params?: {
+    [key: string]: string | number;
+  }): Observable<Usuario[]> {
     let httpParams = new HttpParams();
 
     if (params) {
@@ -62,12 +64,15 @@ export class UsuarioService {
    * @returns Observable com o usuário criado
    */
   salvarUsuario(usuario: Omit<UsuarioModel, 'id'>): Observable<UsuarioModel> {
-    return this.http.post<UsuarioModel>(
-      `${this.config.apiUrl}/${this.endpoint}`,
-      usuario
-    ).pipe(
-      catchError(this.handleError<UsuarioModel>('criarUsuario'))
-    );
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http
+      .post<UsuarioModel>(`${this.config.apiUrl}/${this.endpoint}`, usuario, {
+        headers,
+      })
+      .pipe(catchError(this.handleError<UsuarioModel>('criarUsuario')));
   }
 
   /**
@@ -77,12 +82,9 @@ export class UsuarioService {
    * @returns Observable com o usuário atualizado
    */
   updateUsuario(id: number, usuario: Partial<Usuario>): Observable<Usuario> {
-    return this.http.put<Usuario>(
-      `${this.config.apiUrl}/${this.endpoint}/${id}`,
-      usuario
-    ).pipe(
-      catchError(this.handleError<Usuario>('updateUsuario'))
-    );
+    return this.http
+      .put<Usuario>(`${this.config.apiUrl}/${this.endpoint}/${id}`, usuario)
+      .pipe(catchError(this.handleError<Usuario>('updateUsuario')));
   }
 
   /**
@@ -91,11 +93,9 @@ export class UsuarioService {
    * @returns Observable vazio
    */
   deleteUsuario(id: number): Observable<void> {
-    return this.http.delete<void>(
-      `${this.config.apiUrl}/${this.endpoint}/${id}`
-    ).pipe(
-      catchError(this.handleError<void>('deleteUsuario'))
-    );
+    return this.http
+      .delete<void>(`${this.config.apiUrl}/${this.endpoint}/${id}`)
+      .pipe(catchError(this.handleError<void>('deleteUsuario')));
   }
 
   /**
