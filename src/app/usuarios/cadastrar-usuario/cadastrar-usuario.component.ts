@@ -16,7 +16,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
-import { HttpHeaders } from '@angular/common/http';
+import { DateAdapter, MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-usuario-form',
@@ -31,19 +32,24 @@ import { HttpHeaders } from '@angular/common/http';
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   templateUrl: './cadastrar-usuario.component.html',
   styleUrls: ['./cadastrar-usuario.component.css'],
 })
 export class CadastrarUsuarioComponent implements OnInit {
+
   form!: FormGroup;
+  hidePassword = true;
 
   perfis: Perfil[] = [];
 
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private dateAdapter: DateAdapter<Date>
   ) {}
 
   ngOnInit(): void {
@@ -77,4 +83,19 @@ export class CadastrarUsuarioComponent implements OnInit {
   voltar(): void {
     this.router.navigate(['../usuarios']);
   }
+
+  getProfileIcon(profileName: string): string {
+    switch(profileName.toLowerCase()) {
+      case 'administrador': return 'admin_panel_settings';
+      case 'universidade': return 'school';
+      case 'estudante': return 'person';
+      default: return 'person';
+    }
+  }
+
+  cancelar() {
+    // Implemente a lógica de cancelamento aqui
+    console.log('Formulário cancelado');
+  }
+
 }
