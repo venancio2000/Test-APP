@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -11,15 +11,20 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 interface Usuario {
   id: number;
   nome: string;
-  username: string;
   email: string;
-  perfil: string;
+  dataNascimento?: string;
+  sexo?: string;
+  situacao?: string;
   nomePerfil: string;
-  createdAt: string;
 }
 
 @Component({
@@ -35,11 +40,20 @@ interface Usuario {
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   templateUrl: './usuarios.component.html',
   styleUrls: ['./usuarios.component.css'],
 })
-export class UsuariosComponent implements OnInit {
+export class UsuariosComponent implements OnInit, AfterViewInit {
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
   colunas: string[] = [
     'id',
     'name',
@@ -50,9 +64,11 @@ export class UsuariosComponent implements OnInit {
     'situacao',
     'acoes',
   ];
+  dataSource = new MatTableDataSource<Usuario>([]);
   usuarios: Usuario[] = [];
   loading = true;
   error = '';
+  searchTerm = '';
 
   constructor(
     private router: Router,
@@ -65,18 +81,36 @@ export class UsuariosComponent implements OnInit {
     this.carregarListaUsuarios();
   }
 
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
   carregarListaUsuarios(): void {
+    this.loading = true;
+    this.error = '';
+
     this.usuarioService.getUsuarios().subscribe({
       next: (data) => {
-        this.usuarios = data;
+        this.dataSource.data = data;
+        setTimeout(() => {
+          this.dataSource.paginator = this.paginator;
+        });
         this.loading = false;
       },
-      error: (err) => {
-        this.error = 'Falha ao carregar usuários';
+      error: (error) => {
+        this.error = error.message || 'Erro ao carregar usuários.';
         this.loading = false;
-        this.mostrarErro('Erro ao carregar usuários');
+        this.mostrarErro(this.error);
       },
     });
+  }
+
+  aplicarFiltro(): void {
+    this.dataSource.filter = this.searchTerm.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   abrirCadastro(): void {
@@ -95,13 +129,20 @@ export class UsuariosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.usuarioService.deleteUsuario(id).subscribe(() => {
-          this.snackBar.open('Usuário excluído com sucesso!', 'Fechar', {
-            duration: 3000,
-            verticalPosition: 'top',
-            panelClass: ['success-snackbar'],
-          });
-          this.carregarListaUsuarios();
+        this.loading = true;
+        this.usuarioService.deleteUsuario(id).subscribe({
+          next: () => {
+            this.snackBar.open('Usuário excluído com sucesso!', 'Fechar', {
+              duration: 3000,
+              verticalPosition: 'top',
+              panelClass: ['success-snackbar'],
+            });
+            this.carregarListaUsuarios();
+          },
+          error: (error) => {
+            this.loading = false;
+            this.mostrarErro(error.message || 'Erro ao excluir usuário');
+          },
         });
       }
     });

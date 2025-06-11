@@ -33,8 +33,14 @@
           <mat-icon>error_outline</mat-icon>
           {{ error }}
         </div>
-        } @else { @if (usuarios.length > 0) {
-        <table mat-table [dataSource]="usuarios" class="mat-elevation-z8">
+        } @else { @if (dataSource.data.length > 0) {
+
+        <table
+          mat-table
+          [dataSource]="dataSource.data"
+          matSort
+          class="mat-elevation-z8"
+        >
           <!-- ID -->
           <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef>ID</th>
@@ -106,8 +112,13 @@
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="colunas"></tr>
-          <tr mat-row *matRowDef="let row; columns: colunas" [ngClass]="{ 'usuario-inativo': !row.situacao }"></tr>
+          <tr
+            mat-row
+            *matRowDef="let row; columns: colunas"
+            [ngClass]="{ 'usuario-inativo': !row.situacao }"
+          ></tr>
         </table>
+
         } @else {
         <div class="no-data mat-elevation-z2">
           <mat-icon>info</mat-icon>
@@ -115,6 +126,13 @@
         </div>
         } }
       </div>
+
+      <mat-paginator
+        [pageSize]="5"
+        [pageSizeOptions]="[5, 10, 25]"
+        showFirstLastButtons
+        [length]="dataSource.filteredData.length"
+      ></mat-paginator>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
