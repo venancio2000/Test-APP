@@ -16,8 +16,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
-import { DateAdapter, MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-usuario-form',
@@ -33,13 +34,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatToolbarModule,
     MatIconModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatSnackBarModule,
+    MatNativeDateModule,
   ],
   templateUrl: './cadastrar-usuario.component.html',
   styleUrls: ['./cadastrar-usuario.component.css'],
 })
 export class CadastrarUsuarioComponent implements OnInit {
-
   form!: FormGroup;
   hidePassword = true;
 
@@ -49,7 +50,7 @@ export class CadastrarUsuarioComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private usuarioService: UsuarioService,
-    private dateAdapter: DateAdapter<Date>
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -74,8 +75,12 @@ export class CadastrarUsuarioComponent implements OnInit {
     if (this.form.valid) {
       const usuario: UsuarioModel = this.form.value as UsuarioModel;
       this.usuarioService.salvarUsuario(usuario).subscribe(() => {
-        alert('Usuário salvo com sucesso!');
-        this.form.reset();
+        this.snackBar.open('Usuário salvo com sucesso!', 'Fechar', {
+          duration: 4000,
+          verticalPosition: 'top',
+          panelClass: ['snackbar-success'],
+        });
+        this.router.navigate(['../usuarios']);
       });
     }
   }
@@ -85,11 +90,15 @@ export class CadastrarUsuarioComponent implements OnInit {
   }
 
   getProfileIcon(profileName: string): string {
-    switch(profileName.toLowerCase()) {
-      case 'administrador': return 'admin_panel_settings';
-      case 'universidade': return 'school';
-      case 'estudante': return 'person';
-      default: return 'person';
+    switch (profileName.toLowerCase()) {
+      case 'administrador':
+        return 'admin_panel_settings';
+      case 'universidade':
+        return 'school';
+      case 'estudante':
+        return 'person';
+      default:
+        return 'person';
     }
   }
 
@@ -97,5 +106,4 @@ export class CadastrarUsuarioComponent implements OnInit {
     // Implemente a lógica de cancelamento aqui
     console.log('Formulário cancelado');
   }
-
 }

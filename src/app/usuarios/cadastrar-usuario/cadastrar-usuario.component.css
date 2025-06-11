@@ -89,3 +89,9 @@ button[mat-raised-button] {
     padding: 16px;
   }
 }
+
+.snackbar-success {
+  background-color: #4caf50; /* verde */
+  color: white;
+  font-weight: bold;
+}

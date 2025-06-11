@@ -50,3 +50,8 @@ table {
     transform: rotate(90deg);
   }
 }
+
+
+.usuario-inativo {
+  background-color: rgba(249 152 152 / 10%); /
+}

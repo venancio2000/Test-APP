@@ -56,7 +56,9 @@
           <!-- Data Nascimento -->
           <ng-container matColumnDef="dataNascimento">
             <th mat-header-cell *matHeaderCellDef>DATA NASCIMENTO</th>
-            <td mat-cell *matCellDef="let usuario">{{ usuario.dataNascimento }}</td>
+            <td mat-cell *matCellDef="let usuario">
+              {{ usuario.dataNascimento }}
+            </td>
           </ng-container>
 
           <!-- Sexo -->
@@ -71,11 +73,20 @@
             <td mat-cell *matCellDef="let usuario">{{ usuario.nomePerfil }}</td>
           </ng-container>
 
+          <!-- Situação -->
+          <ng-container matColumnDef="situacao">
+            <th mat-header-cell *matHeaderCellDef>SITUAÇÃO</th>
+            <td mat-cell *matCellDef="let usuario">
+              {{ usuario.situacao ? "Ativo" : "Inativo" }}
+            </td>
+          </ng-container>
+
           <!-- Ações -->
           <ng-container matColumnDef="acoes">
             <th mat-header-cell *matHeaderCellDef>AÇÕES</th>
             <td mat-cell *matCellDef="let usuario">
               <button
+                *ngIf="usuario.situacao"
                 mat-icon-button
                 color="primary"
                 (click)="editarUsuario(usuario.id)"
@@ -84,6 +95,7 @@
               </button>
 
               <button
+                *ngIf="usuario.situacao"
                 mat-icon-button
                 color="primary"
                 (click)="deleteUsuario(usuario.id)"
@@ -94,7 +106,7 @@
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="colunas"></tr>
-          <tr mat-row *matRowDef="let row; columns: colunas"></tr>
+          <tr mat-row *matRowDef="let row; columns: colunas" [ngClass]="{ 'usuario-inativo': !row.situacao }"></tr>
         </table>
         } @else {
         <div class="no-data mat-elevation-z2">

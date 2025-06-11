@@ -47,6 +47,7 @@ export class UsuariosComponent implements OnInit {
     'dataNascimento',
     'sexo',
     'nomePerfil',
+    'situacao',
     'acoes',
   ];
   usuarios: Usuario[] = [];
