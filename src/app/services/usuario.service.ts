@@ -95,7 +95,7 @@ export class UsuarioService {
   deleteUsuario(id: number): Observable<void> {
     return this.http
       .delete<void>(`${this.config.apiUrl}/${this.endpoint}/${id}`)
-      .pipe(catchError(this.handleError<void>('deleteUsuario')));
+      .pipe(catchError(this.handleError<void>('deletarUsuario')));
   }
 
   /**

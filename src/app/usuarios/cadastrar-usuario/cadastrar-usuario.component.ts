@@ -66,7 +66,7 @@ export class CadastrarUsuarioComponent implements OnInit {
       sexo: ['M', Validators.required],
       dataNascimento: [''],
       password: ['', Validators.required],
-      perfil: {} as Perfil, // inicialização forçada (pode melhorar com tipagem mais segura)
+      perfil: [null, Validators.required], // inicialização forçada (pode melhorar com tipagem mais segura)
     });
   }
 

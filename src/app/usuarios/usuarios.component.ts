@@ -9,6 +9,8 @@ import { UsuarioService } from '../services/usuario.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 interface Usuario {
   id: number;
@@ -32,12 +34,21 @@ interface Usuario {
     MatButtonModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
+    MatDialogModule,
   ],
   templateUrl: './usuarios.component.html',
   styleUrls: ['./usuarios.component.css'],
 })
 export class UsuariosComponent implements OnInit {
-  colunas: string[] = ['id', 'name', 'email', 'dataNascimento', 'sexo', 'nomePerfil', 'acoes'];
+  colunas: string[] = [
+    'id',
+    'name',
+    'email',
+    'dataNascimento',
+    'sexo',
+    'nomePerfil',
+    'acoes',
+  ];
   usuarios: Usuario[] = [];
   loading = true;
   error = '';
@@ -45,16 +56,15 @@ export class UsuariosComponent implements OnInit {
   constructor(
     private router: Router,
     private usuarioService: UsuarioService,
-    private snackBar: MatSnackBar
-  ) {
-  }
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.carregarListaUsuarios();
   }
 
   carregarListaUsuarios(): void {
-    console.log('Método carregarListaUsuarios chamado');
     this.usuarioService.getUsuarios().subscribe({
       next: (data) => {
         this.usuarios = data;
@@ -74,6 +84,26 @@ export class UsuariosComponent implements OnInit {
 
   editarUsuario(id: number): void {
     this.router.navigate([`/usuarios/editar/${id}`]);
+  }
+
+  deleteUsuario(id: number): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '350px',
+      data: { mensagem: 'Tem certeza que deseja excluir este usuário?' },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.usuarioService.deleteUsuario(id).subscribe(() => {
+          this.snackBar.open('Usuário excluído com sucesso!', 'Fechar', {
+            duration: 3000,
+            verticalPosition: 'top',
+            panelClass: ['success-snackbar'],
+          });
+          this.carregarListaUsuarios();
+        });
+      }
+    });
   }
 
   private mostrarErro(mensagem: string): void {
