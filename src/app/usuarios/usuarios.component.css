@@ -51,7 +51,7 @@ table {
   }
 }
 
-
 .usuario-inativo {
-  background-color: rgba(249 152 152 / 10%); /
+  background-color: rgba(249 152 152 / 10%);
+  color: #bbabab;
 }
