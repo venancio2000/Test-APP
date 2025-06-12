@@ -63,6 +63,7 @@
                 matInput
                 formControlName="cpf"
                 required
+                maxlength="11"
                 mask="000.000.000-00"
                 placeholder="Ex: 123.456.789-00"
               />
@@ -206,6 +207,20 @@
               <mat-error *ngIf="form.get('perfil')?.hasError('required')">
                 Perfil é obrigatório
               </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <!-- Departamento -->
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Departamento</mat-label>
+              <input
+                matInput
+                maxlength="50"
+                formControlName="departamento"
+                type="text"
+              />
+              <mat-icon matPrefix>local_library</mat-icon>
             </mat-form-field>
           </div>
 

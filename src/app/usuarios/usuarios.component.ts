@@ -23,8 +23,9 @@ interface Usuario {
   email: string;
   dataNascimento?: string;
   sexo?: string;
-  situacao?: string;
   nomePerfil: string;
+  departamento?: string;
+  situacao?: string;
 }
 
 @Component({
@@ -61,6 +62,7 @@ export class UsuariosComponent implements OnInit, AfterViewInit {
     'dataNascimento',
     'sexo',
     'nomePerfil',
+    'departamento',
     'situacao',
     'acoes',
   ];

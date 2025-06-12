@@ -13,8 +13,9 @@ export interface UsuarioModel {
   telefoneFixo?: string;
   telefoneCelular?: string;
   sexo: 'M' | 'F' | 'O';
-  dataNascimento: string; // ISO string
+  dataNascimento: string;
   password: string;
   createdAt?: string;
   perfil: Perfil;
+  departamento?: string;
 }
