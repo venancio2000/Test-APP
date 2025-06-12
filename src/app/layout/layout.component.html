@@ -39,7 +39,7 @@
   </div>
 </div>
 
-<mat-toolbar color="primary" fxLayout="row">
+<mat-toolbar color="primary" fxLayout="row" class="menu">
   <button mat-icon-button (click)="sidenav.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
@@ -78,8 +78,12 @@
         }}</mat-icon>
       </a>
       <div *ngIf="submenuOpen === 'requerimentos'" class="submenu">
-        <a mat-list-item routerLink="/novo-requerimento">Solicitar Cartão Cidadão</a>
-        <a mat-list-item routerLink="/meus-requerimentos">Gerar Arquivo de Pagamento</a>
+        <a mat-list-item routerLink="/novo-requerimento"
+          >Solicitar Cartão Cidadão</a
+        >
+        <a mat-list-item routerLink="/meus-requerimentos"
+          >Gerar Arquivo de Pagamento</a
+        >
       </div>
 
       <!-- Documentos -->
@@ -92,9 +96,15 @@
       </a>
       <div *ngIf="submenuOpen === 'documentos'" class="submenu">
         <a mat-list-item routerLink="/novo-requerimento">Termo de Outorga</a>
-        <a mat-list-item routerLink="/meus-requerimentos">Informe de Rendimentos</a>
-        <a mat-list-item routerLink="/meus-requerimentos">Atestado de vínculo</a>
-        <a mat-list-item routerLink="/meus-requerimentos">Upload de Documentos</a>
+        <a mat-list-item routerLink="/meus-requerimentos"
+          >Informe de Rendimentos</a
+        >
+        <a mat-list-item routerLink="/meus-requerimentos"
+          >Atestado de vínculo</a
+        >
+        <a mat-list-item routerLink="/meus-requerimentos"
+          >Upload de Documentos</a
+        >
       </div>
 
       <a mat-list-item routerLink="#">
@@ -110,9 +120,13 @@
         }}</mat-icon>
       </a>
       <div *ngIf="submenuOpen === 'notificacoes'" class="submenu">
-        <a mat-list-item routerLink="/novo-requerimento" title="Envio de notificações para universidades">Envio para universidades</a>
+        <a
+          mat-list-item
+          routerLink="/novo-requerimento"
+          title="Envio de notificações para universidades"
+          >Envio para universidades</a
+        >
       </div>
-
     </mat-nav-list>
   </mat-sidenav>
 
