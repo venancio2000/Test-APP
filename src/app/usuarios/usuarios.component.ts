@@ -16,6 +16,7 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 interface Usuario {
   id: number;
@@ -51,7 +52,6 @@ interface Usuario {
   styleUrls: ['./usuarios.component.css'],
 })
 export class UsuariosComponent implements OnInit, AfterViewInit {
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -75,6 +75,7 @@ export class UsuariosComponent implements OnInit, AfterViewInit {
   constructor(
     private router: Router,
     private usuarioService: UsuarioService,
+    private authService: AuthService,
     private snackBar: MatSnackBar,
     private dialog: MatDialog
   ) {}
@@ -112,20 +113,16 @@ export class UsuariosComponent implements OnInit, AfterViewInit {
     });
   }
 
-  aplicarFiltro(): void {
-    this.dataSource.filter = this.searchTerm.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
-
   abrirCadastro(): void {
     this.router.navigate(['/usuarios/cadastrar-usuario']);
   }
 
   editarUsuario(id: number): void {
-    this.router.navigate([`/usuarios/editar/${id}`]);
+    this.router.navigate([`/usuarios/cadastrar-usuario/${id}`]);
+  }
+
+  idAdmin(): boolean {
+    return this.authService.isAdmin();
   }
 
   deleteUsuario(id: number): void {

@@ -15,6 +15,7 @@ export const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
       { path: 'usuarios', component: UsuariosComponent, canActivate: [AuthGuard] },
       { path: 'usuarios/cadastrar-usuario', component: CadastrarUsuarioComponent, canActivate: [AuthGuard] },
+      { path: 'usuarios/cadastrar-usuario/:id', component: CadastrarUsuarioComponent, canActivate: [AuthGuard] },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   },

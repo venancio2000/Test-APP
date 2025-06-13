@@ -16,6 +16,7 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem(this.TOKEN_KEY);
     localStorage.removeItem('nomeUsuario'); // se quiser limpar o nome também
+    localStorage.removeItem('nomePerfil');
   }
 
   getToken(): string | null {
@@ -34,5 +35,12 @@ export class AuthService {
 
   getNomeUsuario() {
     return localStorage.getItem('nomeUsuario') || 'Usuário';
+  }
+
+  isAdmin(): boolean {
+    return (
+      localStorage.getItem('nomePerfil')?.trim().toLowerCase() ===
+      'administrador'
+    );
   }
 }

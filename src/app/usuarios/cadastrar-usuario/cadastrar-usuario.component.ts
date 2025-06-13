@@ -15,10 +15,11 @@ import { UsuarioModel, Perfil } from '../../models/usuario.model';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-usuario-form',
@@ -50,7 +51,8 @@ export class CadastrarUsuarioComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private usuarioService: UsuarioService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
@@ -70,6 +72,11 @@ export class CadastrarUsuarioComponent implements OnInit {
       perfil: [null, Validators.required], // inicialização forçada (pode melhorar com tipagem mais segura)
       departamento: [''],
     });
+
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.carregarUsuario(Number(id));
+    }
   }
 
   salvar(): void {
@@ -79,11 +86,40 @@ export class CadastrarUsuarioComponent implements OnInit {
         this.snackBar.open('Usuário salvo com sucesso!', 'Fechar', {
           duration: 4000,
           verticalPosition: 'top',
-          panelClass: ['snackbar-success'],
+          panelClass: ['success-snackbar'],
         });
         this.router.navigate(['../usuarios']);
       });
     }
+  }
+
+  carregarUsuario(id: number): void {
+    this.usuarioService.getUsuarioById(id).subscribe({
+      next: (usuario) => {
+        if (usuario) {
+          this.form.patchValue({
+            nome: usuario.nome,
+            username: usuario.username,
+            cpf: usuario.cpf,
+            email: usuario.email,
+            telefoneFixo: usuario.telefoneFixo,
+            telefoneCelular: usuario.telefoneCelular,
+            sexo: usuario.sexo,
+            dataNascimento: usuario.dataNascimento,
+            perfil: usuario.perfil ?? null,
+            departamento: usuario.departamento,
+          });
+        }
+      },
+      error: (error: Error) => {
+        this.snackBar.open(error.message, 'Fechar', {
+          duration: 5000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+          panelClass: ['error-snackbar'],
+        });
+      },
+    });
   }
 
   voltar(): void {

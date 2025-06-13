@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, of } from 'rxjs';
+import { catchError, Observable, of, throwError } from 'rxjs';
 import { ConfigService } from '../../config/config.service';
 import { UsuarioModel } from '../models/usuario.model';
 
@@ -12,6 +12,12 @@ interface Usuario {
   perfil: string;
   nomePerfil: string;
   createdAt: string;
+  telefoneFixo?: string;
+  telefoneCelular?: string;
+  cpf: string;
+  sexo: string;
+  departamento?: string;
+  dataNascimento: string;
 }
 
 @Injectable({
@@ -52,10 +58,15 @@ export class UsuarioService {
    * @param id ID do usuário
    * @returns Observable com o usuário
    */
-  getUsuariosById(id: number): Observable<Usuario> {
+  getUsuarioById(id: number): Observable<Usuario> {
     return this.http
-      .get<Usuario>(`${this.config.apiUrl}/${this.endpoint}/${id}`)
-      .pipe(catchError(this.handleError<Usuario>(`getUsuariosById id=${id}`)));
+      .get<Usuario>(`${this.config.apiUrl}/${this.endpoint}/id/${id}`)
+      .pipe(
+        catchError((error: any) => {
+          const errorMsg = error?.error?.message || 'Erro ao buscar usuário.';
+          return throwError(() => new Error(errorMsg));
+        })
+      );
   }
 
   /**

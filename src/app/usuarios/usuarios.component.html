@@ -121,7 +121,7 @@
               </button>
 
               <button
-                *ngIf="usuario.situacao"
+                *ngIf="usuario.situacao && idAdmin()"
                 mat-icon-button
                 color="primary"
                 (click)="deleteUsuario(usuario.id)"
