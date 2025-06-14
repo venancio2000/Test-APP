@@ -155,11 +155,11 @@
             <!-- Perfil -->
             <mat-form-field appearance="outline" class="form-field">
               <mat-label>Perfil</mat-label>
-              <mat-select formControlName="perfil" required>
-                <mat-option *ngFor="let p of perfis" [value]="p">
+              <mat-select formControlName="perfil" required [compareWith]="compararPerfil">
+                <mat-option *ngFor="let perfil of perfis" [value]="perfil">
                   <div class="profile-option">
-                    <mat-icon [fontIcon]="getProfileIcon(p.nome)"></mat-icon>
-                    {{ p.nome }}
+                    <mat-icon [fontIcon]="getProfileIcon(perfil.nome)"></mat-icon>
+                    {{ perfil.nome }}
                   </div>
                 </mat-option>
               </mat-select>

@@ -55,9 +55,6 @@ export class CadastrarUsuarioComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.usuarioService.listarPerfis().subscribe((data) => {
-      this.perfis = data;
-    });
     this.form = this.fb.group({
       id: [null], // útil para edição
       nome: ['', Validators.required],
@@ -79,6 +76,10 @@ export class CadastrarUsuarioComponent implements OnInit {
         this.carregarUsuario(Number(id));
       }
     });
+  }
+
+  compararPerfil(p1: Perfil, p2: Perfil): boolean {
+    return p1 && p2 ? p1.id === p2.id : p1 === p2;
   }
 
   salvar(): void {
@@ -111,7 +112,8 @@ export class CadastrarUsuarioComponent implements OnInit {
   carregarUsuario(id: number): void {
     this.usuarioService.getUsuarioById(id).subscribe({
       next: (usuario) => {
-        console.log('Usuário carregado:', usuario);
+        console.log('Perfil recebido do back-end:', usuario.perfil);
+        console.log('Perfis disponíveis:', this.perfis);
         if (usuario) {
           this.form.patchValue({
             id: usuario.id,
@@ -124,7 +126,7 @@ export class CadastrarUsuarioComponent implements OnInit {
             dataNascimento: usuario.dataNascimento
               ? new Date(usuario.dataNascimento)
               : null,
-            perfil: this.perfis.find((p) => p.nome === usuario.perfil) ?? null,
+            perfil: usuario.perfil,
             departamento: usuario.departamento,
           });
         }

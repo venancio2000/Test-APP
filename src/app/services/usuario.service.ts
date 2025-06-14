@@ -2,14 +2,14 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of, throwError } from 'rxjs';
 import { ConfigService } from '../../config/config.service';
-import { UsuarioModel } from '../models/usuario.model';
+import { Perfil, UsuarioModel } from '../models/usuario.model';
 
 interface Usuario {
   id: number;
   nome: string;
   username: string;
   email: string;
-  perfil: string;
+  perfil: Perfil;
   nomePerfil: string;
   createdAt: string;
   telefoneFixo?: string;
