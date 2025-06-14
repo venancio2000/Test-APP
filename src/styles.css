@@ -181,3 +181,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .toolbar-title {
   margin-left: 10px;
 }
+
+mat-sidenav-content{
+  background:#bfd5d5;
+}

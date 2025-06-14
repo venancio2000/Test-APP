@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private TOKEN_KEY = 'token';
@@ -19,5 +20,19 @@ export class AuthService {
 
   getToken(): string | null {
     return localStorage.getItem(this.TOKEN_KEY);
+  }
+
+  private nomeUsuarioSubject = new BehaviorSubject<string>(
+    localStorage.getItem('nomeUsuario') || 'Usuário'
+  );
+  nomeUsuario$ = this.nomeUsuarioSubject.asObservable();
+
+  setNomeUsuario(nome: string) {
+    localStorage.setItem('nomeUsuario', nome);
+    this.nomeUsuarioSubject.next(nome);
+  }
+
+  getNomeUsuario() {
+    return localStorage.getItem('nomeUsuario') || 'Usuário';
   }
 }

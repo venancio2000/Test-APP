@@ -9,3 +9,49 @@
 table {
   width: 100%;
 }
+
+.toolbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.toolbar-right {
+  margin-left: auto; /* Empurra para a direita */
+}
+
+.toolbar-title {
+  margin-left: 8px;
+}
+
+.modern-button {
+  padding: 0 24px;
+  height: 44px;
+  border-radius: 24px; /* Bordas mais arredondadas */
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  .icon-spin {
+    margin-right: 8px;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover .icon-spin {
+    transform: rotate(90deg);
+  }
+}
+
+.usuario-inativo {
+  background-color: rgba(249 152 152 / 10%);
+  color: #bbabab;
+}

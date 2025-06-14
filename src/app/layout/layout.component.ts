@@ -24,15 +24,19 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./layout.component.css'],
 })
 export class LayoutComponent {
-  user: string;
+  user: string = 'Usuário';
   submenuOpen: string | null = null;
 
   toggleSubmenu(menu: string): void {
     this.submenuOpen = this.submenuOpen === menu ? null : menu;
   }
 
-  constructor(private authService: AuthService, private router: Router) {
-    this.user = localStorage.getItem('nomeUsuario') || 'Usuário';
+  constructor(private authService: AuthService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.authService.nomeUsuario$.subscribe((nome) => {
+      this.user = nome;
+    });
   }
 
   sair(): void {

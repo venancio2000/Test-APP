@@ -39,59 +39,98 @@
   </div>
 </div>
 
+<mat-toolbar color="primary" fxLayout="row" class="menu">
+  <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span fxFlex></span>
+</mat-toolbar>
+
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav mode="side" opened>
     <mat-nav-list>
       <!-- Início -->
       <a mat-list-item routerLink="/dashboard">
-        <mat-icon matListIcon>dashboard</mat-icon>
-        <span>Início</span>
+        <mat-icon matListIcon>home</mat-icon>
+        <span class="alinhamento">Início</span>
       </a>
 
       <!-- Cadastro com submenu -->
       <a mat-list-item (click)="toggleSubmenu('cadastro')">
         <mat-icon matListIcon>person</mat-icon>
-        <span>Cadastro</span>
+        <span class="alinhamento">Cadastro</span>
         <mat-icon class="arrow">{{
           submenuOpen === "cadastro" ? "expand_less" : "expand_more"
         }}</mat-icon>
       </a>
       <div *ngIf="submenuOpen === 'cadastro'" class="submenu">
         <a mat-list-item routerLink="/usuarios">Usuários</a>
-        <a mat-list-item routerLink="/perfis">Perfis</a>
+        <a mat-list-item routerLink="/universidades">Universidade</a>
+        <a mat-list-item routerLink="/estudantes">Estudante</a>
       </div>
 
       <!-- Requerimentos com submenu -->
       <a mat-list-item (click)="toggleSubmenu('requerimentos')">
         <mat-icon matListIcon>description</mat-icon>
-        <span>Requerimentos</span>
+        <span class="alinhamento">Requerimentos</span>
         <mat-icon class="arrow">{{
           submenuOpen === "requerimentos" ? "expand_less" : "expand_more"
         }}</mat-icon>
       </a>
       <div *ngIf="submenuOpen === 'requerimentos'" class="submenu">
-        <a mat-list-item routerLink="/novo-requerimento">Novo</a>
-        <a mat-list-item routerLink="/meus-requerimentos">Meus Requerimentos</a>
+        <a mat-list-item routerLink="/novo-requerimento"
+          >Solicitar Cartão Cidadão</a
+        >
+        <a mat-list-item routerLink="/meus-requerimentos"
+          >Gerar Arquivo de Pagamento</a
+        >
       </div>
 
-      <!-- Outros -->
-      <a mat-list-item routerLink="#">
-        <mat-icon matListIcon>folder</mat-icon>
-        <span>Documentos</span>
+      <!-- Documentos -->
+      <a mat-list-item (click)="toggleSubmenu('documentos')">
+        <mat-icon matListIcon>folder_open</mat-icon>
+        <span class="alinhamento">Documentos</span>
+        <mat-icon class="arrow">{{
+          submenuOpen === "documentos" ? "expand_less" : "expand_more"
+        }}</mat-icon>
       </a>
+      <div *ngIf="submenuOpen === 'documentos'" class="submenu">
+        <a mat-list-item routerLink="/novo-requerimento">Termo de Outorga</a>
+        <a mat-list-item routerLink="/meus-requerimentos"
+          >Informe de Rendimentos</a
+        >
+        <a mat-list-item routerLink="/meus-requerimentos"
+          >Atestado de vínculo</a
+        >
+        <a mat-list-item routerLink="/meus-requerimentos"
+          >Upload de Documentos</a
+        >
+      </div>
+
       <a mat-list-item routerLink="#">
-        <mat-icon matListIcon>visibility</mat-icon>
-        <span>Monitoramento</span>
+        <mat-icon matListIcon>desktop_windows</mat-icon>
+        <span class="alinhamento">Monitoramento</span>
       </a>
-      <a mat-list-item routerLink="#">
-        <mat-icon matListIcon>notifications</mat-icon>
-        <span>Notificações</span>
+
+      <a mat-list-item (click)="toggleSubmenu('notificacoes')">
+        <mat-icon matListIcon>notifications_none</mat-icon>
+        <span class="alinhamento">Notificações</span>
+        <mat-icon class="arrow">{{
+          submenuOpen === "notificacoes" ? "expand_less" : "expand_more"
+        }}</mat-icon>
       </a>
+      <div *ngIf="submenuOpen === 'notificacoes'" class="submenu">
+        <a
+          mat-list-item
+          routerLink="/novo-requerimento"
+          title="Envio de notificações para universidades"
+          >Envio para universidades</a
+        >
+      </div>
     </mat-nav-list>
   </mat-sidenav>
 
   <mat-sidenav-content class="bodyPrincipal">
-
     <div class="content">
       <router-outlet></router-outlet>
       <!-- ✅ conteúdo dinâmico aparece aqui -->
@@ -109,7 +148,7 @@
 
   <div class="versaoSistema">
     <span class="font14">SGB - V1.0</span>
-    <br>
+    <br />
     <span class="font12">SICT 2025</span>
   </div>
 

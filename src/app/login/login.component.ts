@@ -9,16 +9,19 @@ import {
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfigService } from '../../config/config.service';
+import { AuthService } from '../auth.service';
+import { NgxMaskDirective} from 'ngx-mask';
+
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, HttpClientModule],
+  imports: [FormsModule, HttpClientModule, NgxMaskDirective],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  usuario: string = '';
+  cpf: string = '';
   senha: string = '';
   loading = false;
 
@@ -26,13 +29,14 @@ export class LoginComponent {
     private http: HttpClient,
     private router: Router,
     private snackBar: MatSnackBar,
-    private config: ConfigService
+    private config: ConfigService,
+    private authService: AuthService
   ) {}
 
   fazerLogin() {
     this.loading = true;
     const loginData = {
-      username: this.usuario,
+      cpf: this.cpf,
       password: this.senha,
     };
 
@@ -48,10 +52,11 @@ export class LoginComponent {
               panelClass: ['success-snackbar'],
             });
             this.http
-              .get<any>(`${this.config.apiUrl}/users/${this.usuario}`)
+              .get<any>(`${this.config.apiUrl}/users/username/${this.cpf}`)
               .subscribe({
                 next: (user) => {
                   localStorage.setItem('nomeUsuario', user.nome);
+                  this.authService.setNomeUsuario(user.nome);
                 },
                 error: (err) => {
                   this.snackBar.open('Erro ao buscar usuário', 'Fechar', {
