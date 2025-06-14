@@ -19,7 +19,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  usuario: string = '';
+  cpf: string = '';
   senha: string = '';
   loading = false;
 
@@ -34,7 +34,7 @@ export class LoginComponent {
   fazerLogin() {
     this.loading = true;
     const loginData = {
-      username: this.usuario,
+      cpf: this.cpf,
       password: this.senha,
     };
 
@@ -50,7 +50,7 @@ export class LoginComponent {
               panelClass: ['success-snackbar'],
             });
             this.http
-              .get<any>(`${this.config.apiUrl}/users/${this.usuario}`)
+              .get<any>(`${this.config.apiUrl}/users/username/${this.cpf}`)
               .subscribe({
                 next: (user) => {
                   localStorage.setItem('nomeUsuario', user.nome);
