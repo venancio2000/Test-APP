@@ -92,10 +92,18 @@ export class UsuarioService {
    * @param usuario Dados atualizados
    * @returns Observable com o usuário atualizado
    */
-  updateUsuario(id: number, usuario: Partial<Usuario>): Observable<Usuario> {
+  updateUsuario(id: number, usuario: UsuarioModel): Observable<UsuarioModel> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
     return this.http
-      .put<Usuario>(`${this.config.apiUrl}/${this.endpoint}/${id}`, usuario)
-      .pipe(catchError(this.handleError<Usuario>('updateUsuario')));
+      .put<UsuarioModel>(
+        `${this.config.apiUrl}/${this.endpoint}/${id}`, usuario, {
+          headers,
+        }
+      )
+      .pipe(catchError(this.handleError<UsuarioModel>('updateUsuario')));
   }
 
   /**

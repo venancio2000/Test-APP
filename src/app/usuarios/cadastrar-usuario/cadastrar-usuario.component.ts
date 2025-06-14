@@ -19,7 +19,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-usuario-form',
@@ -52,7 +51,7 @@ export class CadastrarUsuarioComponent implements OnInit {
     private fb: FormBuilder,
     private usuarioService: UsuarioService,
     private snackBar: MatSnackBar,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -60,30 +59,46 @@ export class CadastrarUsuarioComponent implements OnInit {
       this.perfis = data;
     });
     this.form = this.fb.group({
+      id: [null], // útil para edição
       nome: ['', Validators.required],
-      username: ['', Validators.required],
       cpf: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       telefoneFixo: [''],
       telefoneCelular: [''],
-      sexo: ['M', Validators.required],
+      sexo: ['', Validators.required],
       dataNascimento: [''],
-      password: ['', Validators.required],
       perfil: [null, Validators.required], // inicialização forçada (pode melhorar com tipagem mais segura)
       departamento: [''],
     });
 
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.carregarUsuario(Number(id));
-    }
+    this.usuarioService.listarPerfis().subscribe((data) => {
+      this.perfis = data;
+
+      const id = this.route.snapshot.paramMap.get('id');
+      if (id) {
+        this.carregarUsuario(Number(id));
+      }
+    });
   }
 
   salvar(): void {
     if (this.form.valid) {
-      const usuario: UsuarioModel = this.form.value as UsuarioModel;
-      this.usuarioService.salvarUsuario(usuario).subscribe(() => {
-        this.snackBar.open('Usuário salvo com sucesso!', 'Fechar', {
+      const formValue = this.form.value;
+
+      const usuario: any = {
+        ...formValue,
+        perfil: { id: formValue.perfil.id }, // pega só o ID
+      };
+
+      const request$ = usuario.id
+        ? this.usuarioService.updateUsuario(usuario.id, usuario)
+        : this.usuarioService.salvarUsuario(usuario);
+
+      request$.subscribe(() => {
+        const mensagem = usuario.id
+          ? 'Usuário atualizado com sucesso!'
+          : 'Usuário salvo com sucesso!';
+        this.snackBar.open(mensagem, 'Fechar', {
           duration: 4000,
           verticalPosition: 'top',
           panelClass: ['success-snackbar'],
@@ -96,17 +111,20 @@ export class CadastrarUsuarioComponent implements OnInit {
   carregarUsuario(id: number): void {
     this.usuarioService.getUsuarioById(id).subscribe({
       next: (usuario) => {
+        console.log('Usuário carregado:', usuario);
         if (usuario) {
           this.form.patchValue({
+            id: usuario.id,
             nome: usuario.nome,
-            username: usuario.username,
             cpf: usuario.cpf,
             email: usuario.email,
             telefoneFixo: usuario.telefoneFixo,
             telefoneCelular: usuario.telefoneCelular,
             sexo: usuario.sexo,
-            dataNascimento: usuario.dataNascimento,
-            perfil: usuario.perfil ?? null,
+            dataNascimento: usuario.dataNascimento
+              ? new Date(usuario.dataNascimento)
+              : null,
+            perfil: this.perfis.find((p) => p.nome === usuario.perfil) ?? null,
             departamento: usuario.departamento,
           });
         }
