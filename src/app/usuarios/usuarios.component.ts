@@ -155,6 +155,7 @@ export class UsuariosComponent implements OnInit, AfterViewInit {
   private mostrarErro(mensagem: string): void {
     this.snackBar.open(mensagem, 'Fechar', {
       duration: 5000,
+      verticalPosition: 'top',
       panelClass: ['error-snackbar'],
     });
   }

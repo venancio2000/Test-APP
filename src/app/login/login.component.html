@@ -65,12 +65,12 @@
             [disabled]="loading"
           >
             @if (!loading) {
-              <i class="fas fa-user"></i> Acessar
-            }
-            @if (loading) {
-              <i class="fas fa-spinner fa-spin"></i> Carregando...
-            }
+            <i class="fas fa-user"></i> Acessar } @if (loading) {
+            <i class="fas fa-spinner fa-spin"></i> Carregando... }
           </button>
+          <p class="esqueci-senha">
+            <a (click)="abrirDialogEsqueciSenha()">Esqueci minha senha</a>
+          </p>
         </div>
       </div>
     </div>

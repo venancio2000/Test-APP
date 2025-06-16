@@ -194,16 +194,6 @@ button {
   font-size: 0.95rem;
 }
 
-.govbr-button {
-  background-color: #266F8B;
-  color: white;
-}
-
-.govbr-button i {
-  margin-right: 0.5rem;
-  font-size: small;
-}
-
 .acessar-button {
   background-color: #00564c;
   color: white;
@@ -290,15 +280,13 @@ hr {
   }
 }
 
-.esqueci-senha {
-  text-align: center;
-  margin-top: 6px;
-  margin-bottom: 12px;
+.acessar-button {
+  background-color: #2e7d32; /* verde */
+  color: white;
 }
 
-.esqueci-senha a {
-  color: #007BFF;
-  text-decoration: underline;
-  cursor: pointer;
-  font-size: 0.85rem;
+.acessar-button-disabled {
+  background-color: #ccc !important;
+  color: #666 !important;
+  cursor: not-allowed;
 }

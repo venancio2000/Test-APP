@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfigService } from '../../config/config.service';
 import { AuthService } from '../auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { EsqueciSenhaDialogComponent } from '../esqueci-senha-dialog/esqueci-senha-dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +30,8 @@ export class LoginComponent {
     private router: Router,
     private snackBar: MatSnackBar,
     private config: ConfigService,
-    private authService: AuthService
+    private authService: AuthService,
+    private dialog: MatDialog
   ) {}
 
   fazerLogin() {
@@ -86,5 +89,11 @@ export class LoginComponent {
           console.error(err);
         },
       });
+  }
+
+  abrirDialogEsqueciSenha() {
+    this.dialog.open(EsqueciSenhaDialogComponent, {
+      width: '500px',
+    });
   }
 }
