@@ -150,9 +150,8 @@ export class CadastrarUsuarioComponent implements OnInit {
         return 'person';
     }
   }
+  cancelar(): void {
+  this.router.navigate(['../usuarios']);
+}
 
-  cancelar() {
-    // Implemente a lógica de cancelamento aqui
-    console.log('Formulário cancelado');
-  }
 }

@@ -10,13 +10,11 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfigService } from '../../config/config.service';
 import { AuthService } from '../auth.service';
-import { MatDialog } from '@angular/material/dialog';
-import { EsqueciSenhaDialogComponent } from '../esqueci-senha-dialog/esqueci-senha-dialog.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, HttpClientModule],
+  imports: [FormsModule, HttpClientModule, NgxMaskDirective],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
