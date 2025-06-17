@@ -1,0 +1,155 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav-content>
+    <div class="container">
+      <div class="content">
+        <mat-toolbar>
+          <div class="toolbar-left">
+            <mat-icon>account_circle</mat-icon>
+            <span class="toolbar-title">Cadastro de usuários</span>
+          </div>
+          <div class="toolbar-right">
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="voltar()"
+              class="modern-button"
+            >
+              <mat-icon class="icon-user">arrow_back</mat-icon>
+              <span>Voltar</span>
+            </button>
+          </div>
+        </mat-toolbar>
+      </div>
+
+      <div class="form-container mat-elevation-z4">
+        <form [formGroup]="form" (ngSubmit)="salvar()" class="usuario-form">
+          <div class="form-row">
+            <!-- CPF -->
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>CPF</mat-label>
+              <input
+                matInput
+                formControlName="cpf"
+                required
+                maxlength="11"
+                mask="000.000.000-00"
+                placeholder="Ex: 123.456.789-00"
+              />
+              <mat-icon matPrefix>badge</mat-icon>
+              <mat-error *ngIf="form.get('cpf')?.hasError('required')">
+                CPF é obrigatório
+              </mat-error>
+            </mat-form-field>
+
+            <!-- Nome -->
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Nome Completo</mat-label>
+              <input
+                matInput
+                formControlName="nome"
+                required
+                placeholder="Ex: João Silva"
+              />
+              <mat-icon matPrefix>person</mat-icon>
+              <mat-error *ngIf="form.get('nome')?.hasError('required')">
+                Nome é obrigatório
+              </mat-error>
+            </mat-form-field>
+
+            <!-- IF Funcional -->
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>ID Funcional</mat-label>
+              <input
+                matInput
+                formControlName="idFuncional"
+                required
+              />
+              <mat-icon matPrefix>person</mat-icon>
+              <mat-error *ngIf="form.get('idFuncional')?.hasError('required')">
+                ID é obrigatório
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <!-- Email -->
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Email</mat-label>
+              <input
+                matInput
+                formControlName="email"
+                required
+                type="email"
+                placeholder="Ex: joao@exemplo.com"
+              />
+              <mat-icon matPrefix>email</mat-icon>
+              <mat-error *ngIf="form.get('email')?.errors">
+                {{
+                  form.get("email")?.hasError("required")
+                    ? "Email é obrigatório"
+                    : "Email inválido"
+                }}
+              </mat-error>
+            </mat-form-field>
+
+            <!-- Departamento -->
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Departamento</mat-label>
+              <input
+                matInput
+                maxlength="50"
+                formControlName="departamento"
+                type="text"
+              />
+              <mat-icon matPrefix>local_library</mat-icon>
+            </mat-form-field>
+
+          </div>
+
+          <div class="form-row">
+            <!-- Perfil -->
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Perfil</mat-label>
+              <mat-select
+                formControlName="perfil"
+                required
+                [compareWith]="compararPerfil"
+              >
+                <mat-option *ngFor="let perfil of perfis" [value]="perfil">
+                  <div class="profile-option">
+                    <mat-icon
+                      [fontIcon]="getProfileIcon(perfil.nome)"
+                    ></mat-icon>
+                    {{ perfil.nome }}
+                  </div>
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="form.get('perfil')?.hasError('required')">
+                Perfil é obrigatório
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+
+          </div>
+
+          <div class="form-actions">
+            <button mat-stroked-button type="button" (click)="cancelar()">
+              Cancelar
+            </button>
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="form.invalid"
+            >
+              <mat-icon>save</mat-icon>
+              Salvar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

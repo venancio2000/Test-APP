@@ -1,0 +1,181 @@
+.bodyPrincipal {
+  background-color: #BFD5D5;
+}
+
+.faixaTopo {
+    background-color: #24E8BA;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* alinha tudo à direita */
+    padding-right: 16px;
+}
+
+.faixaTopoLogos {
+    height: 150px;
+    display: flex;
+    align-items: center;
+    padding-right: 16px;
+}
+
+.userName {
+  padding-right: 3%;
+}
+
+.iconeUser mat-icon,
+.sair mat-icon {
+  cursor: pointer;
+  font-size: 24px;
+  color: rgb(15, 82, 59);
+}
+
+.sair {
+  padding-right: 2%;
+}
+
+.userName {
+  font-weight: bold;
+}
+
+.submenu {
+  margin-left: 10%;
+  padding-left: 20px;
+}
+
+.submenu a.mat-list-item {
+  padding-left: 48px;
+  font-size: 14px;
+}
+
+.arrow {
+  margin-left: auto;
+}
+
+a.mat-list-item {
+  cursor: pointer;
+}
+
+.logo-estado {
+  height: 110px;
+  margin-left: 5%;
+}
+
+.nomeSistema {
+  align-items: center;
+  width: 100%;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  font-family: 'Rawline SemiBold', sans-serif;
+  color: #015958;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+h2 .verde {
+  color: #679B9B;
+  font-weight: normal;
+}
+
+.logos {
+  display: flex;
+  gap: 2.5rem;
+  margin-right: 2%;
+}
+
+.logo-rs-talentos {
+  height: 100px;
+  width: auto;
+}
+
+.logo-professor {
+  height: 100px;
+  width: auto;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #00564c;
+  color: white;
+  padding: 1rem 2rem;
+  font-size: 0.9rem;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 130px;
+}
+
+footer p {
+  text-align: left;
+  margin-left: 10%;
+  font-family: 'Rawline SemiBold', sans-serif;
+}
+
+footer .logo-estado {
+  height: 100px;
+  width: auto;
+  margin-right: 8%;
+}
+
+.footer-texto {
+  margin-left: 4%;
+  flex-direction: column;
+  width: 60%;
+  font-family: 'Rawline Light', sans-serif;
+  font-size: 12px;
+}
+
+.footer-texto-p1 {
+  font-family: 'Rawline Bold', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.versaoSistema {
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+
+.font12{
+  font-size: 12px;
+}
+
+.font14{
+  font-size: 14px;
+}
+
+.menu {
+  width: 4%;
+  position: relative;
+  background: #fff;
+  float: left;
+}
+
+.alinhamento {
+  display: table-caption;
+  padding-left: 10px;
+}
+
+.sidenav-container {
+
+  mat-toolbar {
+    top: 0;
+    z-index: 2;
+  }
+
+  mat-sidenav {
+    width: 310px;
+    box-shadow: 3px 5px 5px rgba(0,0,0,0.24);
+  }
+
+}
+

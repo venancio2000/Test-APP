@@ -1,0 +1,148 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav-content>
+    <div class="container">
+      <div class="content">
+        <mat-toolbar>
+          <div class="toolbar-left">
+            <mat-icon>account_circle</mat-icon>
+            <span class="toolbar-title">Lista de usuários</span>
+          </div>
+
+          <div class="toolbar-right">
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="abrirCadastro()"
+              class="modern-button"
+            >
+              <mat-icon class="icon-user">person_add</mat-icon>
+              <span>Novo Usuário</span>
+            </button>
+          </div>
+        </mat-toolbar>
+      </div>
+
+      <div class="content" style="padding-top: 0px;">
+        <mat-form-field>
+          <mat-label>Pesquisa</mat-label>
+          <input
+            matInput
+            (keyup)="applyFilter($event)"
+            placeholder="Ex. ium"
+            #input
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="content" style="padding-top: 0px;">
+        @if (loading) {
+        <div class="loading-spinner">
+          <mat-spinner></mat-spinner>
+          <p>Carregando usuários...</p>
+        </div>
+        } @else if (error) {
+        <div class="error-message mat-elevation-z2">
+          <mat-icon>error_outline</mat-icon>
+          {{ error }}
+        </div>
+        } @else { @if (dataSource.data.length > 0) {
+
+        <table
+          mat-table
+          [dataSource]="dataSource"
+          matSort
+          class="mat-elevation-z8"
+        >
+          <!-- Nome -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>NOME</th>
+            <td mat-cell *matCellDef="let usuario">{{ usuario.nome }}</td>
+          </ng-container>
+
+          <!-- ID Funcional -->
+          <ng-container matColumnDef="idFuncional">
+            <th mat-header-cell *matHeaderCellDef>ID Funcional</th>
+            <td mat-cell *matCellDef="let usuario">{{ usuario.idFuncional }}</td>
+          </ng-container>
+
+          <!-- Departamento -->
+          <ng-container matColumnDef="departamento">
+            <th mat-header-cell *matHeaderCellDef>DEPARTAMENTO</th>
+            <td mat-cell *matCellDef="let usuario">
+              {{ usuario.departamento }}
+            </td>
+          </ng-container>
+
+          <!-- Email -->
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>EMAIL</th>
+            <td mat-cell *matCellDef="let usuario">{{ usuario.email }}</td>
+          </ng-container>
+
+          <!-- Perfil -->
+          <ng-container matColumnDef="nomePerfil">
+            <th mat-header-cell *matHeaderCellDef>PERFIL</th>
+            <td mat-cell *matCellDef="let usuario">{{ usuario.nomePerfil }}</td>
+          </ng-container>
+
+          <!-- Situação -->
+          <ng-container matColumnDef="situacao">
+            <th mat-header-cell *matHeaderCellDef>SITUAÇÃO</th>
+            <td mat-cell *matCellDef="let usuario">
+              {{ usuario.situacao ? "Ativo" : "Inativo" }}
+            </td>
+          </ng-container>
+
+          <!-- Ações -->
+          <ng-container matColumnDef="acoes">
+            <th mat-header-cell *matHeaderCellDef>AÇÕES</th>
+            <td mat-cell *matCellDef="let usuario">
+              <button
+                *ngIf="usuario.situacao"
+                mat-icon-button
+                color="primary"
+                (click)="editarUsuario(usuario.id)"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+
+              <button
+                *ngIf="usuario.situacao && idAdmin()"
+                mat-icon-button
+                color="primary"
+                (click)="deleteUsuario(usuario.id)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+          <tr
+            mat-row
+            *matRowDef="let row; columns: colunas"
+            [ngClass]="{ 'usuario-inativo': !row.situacao }"
+          ></tr>
+        </table>
+
+        } @else {
+        <div class="no-data mat-elevation-z2">
+          <mat-icon>info</mat-icon>
+          <p>Nenhum usuário encontrado</p>
+        </div>
+        } }
+      </div>
+
+      <div class="content">
+        <mat-toolbar>
+          <mat-paginator
+            [pageSize]="5"
+            [pageSizeOptions]="[5, 10, 25]"
+            showFirstLastButtons
+            [length]="dataSource.filteredData.length"
+          ></mat-paginator>
+        </mat-toolbar>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
