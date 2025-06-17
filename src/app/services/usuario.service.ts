@@ -9,15 +9,12 @@ interface Usuario {
   nome: string;
   username: string;
   email: string;
+  idFuncional: number;
   perfil: Perfil;
   nomePerfil: string;
   createdAt: string;
-  telefoneFixo?: string;
-  telefoneCelular?: string;
   cpf: string;
-  sexo: string;
   departamento?: string;
-  dataNascimento: string;
 }
 
 @Injectable({

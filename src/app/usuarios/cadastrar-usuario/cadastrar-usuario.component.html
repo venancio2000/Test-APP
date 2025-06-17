@@ -24,6 +24,23 @@
       <div class="form-container mat-elevation-z4">
         <form [formGroup]="form" (ngSubmit)="salvar()" class="usuario-form">
           <div class="form-row">
+            <!-- CPF -->
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>CPF</mat-label>
+              <input
+                matInput
+                formControlName="cpf"
+                required
+                maxlength="11"
+                mask="000.000.000-00"
+                placeholder="Ex: 123.456.789-00"
+              />
+              <mat-icon matPrefix>badge</mat-icon>
+              <mat-error *ngIf="form.get('cpf')?.hasError('required')">
+                CPF é obrigatório
+              </mat-error>
+            </mat-form-field>
+
             <!-- Nome -->
             <mat-form-field appearance="outline" class="form-field">
               <mat-label>Nome Completo</mat-label>
@@ -39,20 +56,17 @@
               </mat-error>
             </mat-form-field>
 
-            <!-- CPF -->
+            <!-- IF Funcional -->
             <mat-form-field appearance="outline" class="form-field">
-              <mat-label>CPF</mat-label>
+              <mat-label>ID Funcional</mat-label>
               <input
                 matInput
-                formControlName="cpf"
+                formControlName="idFuncional"
                 required
-                maxlength="11"
-                mask="000.000.000-00"
-                placeholder="Ex: 123.456.789-00"
               />
-              <mat-icon matPrefix>badge</mat-icon>
-              <mat-error *ngIf="form.get('cpf')?.hasError('required')">
-                CPF é obrigatório
+              <mat-icon matPrefix>person</mat-icon>
+              <mat-error *ngIf="form.get('idFuncional')?.hasError('required')">
+                ID é obrigatório
               </mat-error>
             </mat-form-field>
           </div>
@@ -78,98 +92,6 @@
               </mat-error>
             </mat-form-field>
 
-            <!-- Telefone Fixo -->
-            <mat-form-field appearance="outline" class="form-field">
-              <mat-label>Telefone Fixo</mat-label>
-              <input
-                matInput
-                formControlName="telefoneFixo"
-                mask="(00) 0000-0000"
-                placeholder="Ex: (11) 1234-5678"
-              />
-              <mat-icon matPrefix>phone</mat-icon>
-            </mat-form-field>
-          </div>
-
-          <div class="form-row">
-            <!-- Telefone Celular -->
-            <mat-form-field appearance="outline" class="form-field">
-              <mat-label>Telefone Celular</mat-label>
-              <input
-                matInput
-                formControlName="telefoneCelular"
-                mask="(00) 00000-0000"
-                placeholder="Ex: (11) 98765-4321"
-              />
-              <mat-icon matPrefix>smartphone</mat-icon>
-            </mat-form-field>
-
-            <!-- Sexo -->
-            <mat-form-field appearance="outline" class="form-field">
-              <mat-label>Sexo</mat-label>
-              <mat-select formControlName="sexo" required>
-                <mat-option value="M">
-                  <div class="gender-option">
-                    <span>Masculino</span>
-                  </div>
-                </mat-option>
-                <mat-option value="F">
-                  <div class="gender-option">
-                    <span>Feminino</span>
-                  </div>
-                </mat-option>
-                <mat-option value="O">
-                  <div class="gender-option">
-                    <span>Outro</span>
-                  </div>
-                </mat-option>
-              </mat-select>
-              <mat-error *ngIf="form.get('sexo')?.hasError('required')">
-                Sexo é obrigatório
-              </mat-error>
-            </mat-form-field>
-          </div>
-
-          <div class="form-row">
-            <!-- Data de Nascimento -->
-            <mat-form-field appearance="outline" class="form-field">
-              <mat-label>Data de Nascimento</mat-label>
-              <input
-                matInput
-                [matDatepicker]="picker"
-                formControlName="dataNascimento"
-                required
-              />
-              <mat-datepicker-toggle
-                matSuffix
-                [for]="picker"
-              ></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-              <mat-error
-                *ngIf="form.get('dataNascimento')?.hasError('required')"
-              >
-                Data de nascimento é obrigatória
-              </mat-error>
-            </mat-form-field>
-
-            <!-- Perfil -->
-            <mat-form-field appearance="outline" class="form-field">
-              <mat-label>Perfil</mat-label>
-              <mat-select formControlName="perfil" required [compareWith]="compararPerfil">
-                <mat-option *ngFor="let perfil of perfis" [value]="perfil">
-                  <div class="profile-option">
-                    <mat-icon [fontIcon]="getProfileIcon(perfil.nome)"></mat-icon>
-                    {{ perfil.nome }}
-                  </div>
-                </mat-option>
-              </mat-select>
-              <mat-error *ngIf="form.get('perfil')?.hasError('required')">
-                Perfil é obrigatório
-              </mat-error>
-            </mat-form-field>
-          </div>
-
-          <div class="form-row">
             <!-- Departamento -->
             <mat-form-field appearance="outline" class="form-field">
               <mat-label>Departamento</mat-label>
@@ -181,6 +103,35 @@
               />
               <mat-icon matPrefix>local_library</mat-icon>
             </mat-form-field>
+
+          </div>
+
+          <div class="form-row">
+            <!-- Perfil -->
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Perfil</mat-label>
+              <mat-select
+                formControlName="perfil"
+                required
+                [compareWith]="compararPerfil"
+              >
+                <mat-option *ngFor="let perfil of perfis" [value]="perfil">
+                  <div class="profile-option">
+                    <mat-icon
+                      [fontIcon]="getProfileIcon(perfil.nome)"
+                    ></mat-icon>
+                    {{ perfil.nome }}
+                  </div>
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="form.get('perfil')?.hasError('required')">
+                Perfil é obrigatório
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+
           </div>
 
           <div class="form-actions">

@@ -56,13 +56,11 @@ export class UsuariosComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   colunas: string[] = [
-    'id',
     'name',
-    'email',
-    'dataNascimento',
-    'sexo',
-    'nomePerfil',
+    'idFuncional',
     'departamento',
+    'email',
+    'nomePerfil',
     'situacao',
     'acoes',
   ];

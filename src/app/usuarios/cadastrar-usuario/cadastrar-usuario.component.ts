@@ -60,10 +60,7 @@ export class CadastrarUsuarioComponent implements OnInit {
       nome: ['', Validators.required],
       cpf: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      telefoneFixo: [''],
-      telefoneCelular: [''],
-      sexo: ['', Validators.required],
-      dataNascimento: [''],
+      idFuncional: ['', Validators.required],
       perfil: [null, Validators.required], // inicialização forçada (pode melhorar com tipagem mais segura)
       departamento: [''],
     });
@@ -118,14 +115,9 @@ export class CadastrarUsuarioComponent implements OnInit {
           this.form.patchValue({
             id: usuario.id,
             nome: usuario.nome,
+            idFuncional: usuario.idFuncional,
             cpf: usuario.cpf,
             email: usuario.email,
-            telefoneFixo: usuario.telefoneFixo,
-            telefoneCelular: usuario.telefoneCelular,
-            sexo: usuario.sexo,
-            dataNascimento: usuario.dataNascimento
-              ? new Date(usuario.dataNascimento)
-              : null,
             perfil: usuario.perfil,
             departamento: usuario.departamento,
           });

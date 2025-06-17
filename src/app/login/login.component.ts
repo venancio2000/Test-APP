@@ -48,7 +48,7 @@ export class LoginComponent {
           if (res.token) {
             localStorage.setItem('token', res.token);
             this.snackBar.open('Bem vindo ao Professor do Amanhã!', 'Fechar', {
-              duration: 2000,
+              duration: 3000,
               verticalPosition: 'top',
               panelClass: ['success-snackbar'],
             });
