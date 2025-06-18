@@ -106,7 +106,7 @@
   border-bottom: none;
 }
 
-/* Original Styles - Ajustados para viewport fixo */
+/* Original Styles - Restored */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -118,7 +118,8 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 body {
@@ -132,9 +133,8 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  height: calc(100vh - 170px); /* Subtrai altura da nav (40px) + footer (130px) */
-  padding: 0 2rem;
-  overflow: hidden;
+  min-height: calc(100vh - 140px);
+  padding: 0 4rem;
 }
 
 .left {
@@ -150,19 +150,18 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  flex-shrink: 0;
 }
 
 .logos {
   display: flex;
-  gap: 1.5rem;
-  margin-bottom: 1rem;
-  margin-top: 1rem;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  margin-top: 2rem; 
 }
 
 .logo-rs-talentos,
 .logo-professor {
-  height: 90px;
+  height: 120px;
   width: auto;
 }
 
@@ -174,15 +173,15 @@ body {
   text-align: center;
   margin-top: auto;
   padding-bottom: 0;
-  flex: 1;
-  min-height: 0;
 }
 
 .students img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  margin-left: -20%;
+  max-width: 970px;
+  max-height: 900px;
+  margin-left: -37%;
+  margin-top: -5%;
+  margin: 0 auto; /* <-- Centraliza a imagem */
+  
 }
 
 .right {
@@ -191,33 +190,30 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
 }
 
 .logo-estado {
-  height: 100px;
+  height: 120px;
   margin-bottom: 1rem;
-  flex-shrink: 0;
 }
 
 .form {
   background-color: #f1f6f9;
-  padding: 1.5rem;
+  padding: 2rem;
   border-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 320px;
-  flex-shrink: 0;
+  max-width: 350px;
 }
 
 h2 {
   text-align: center;
-  margin-bottom: 1.5rem;
-  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
   font-family: 'Rawline SemiBold', sans-serif;
   color: #015958;
   font-weight: bold;
-  line-height: 1.3;
+  line-height: 1.4;
 }
 
 h2 .verde {
@@ -230,15 +226,15 @@ h2 .verde {
 }
 
 .section {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .login-title {
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-family: 'Rawline SemiBold', sans-serif;
   text-align: center;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.7rem;
   color: #015958;
 }
 
@@ -249,21 +245,21 @@ h2 .verde {
 input {
   display: block;
   width: 100%;
-  padding: 0.6rem;
-  margin: 0.5rem 0;
+  padding: 0.7rem;
+  margin: 0.6rem 0;
   border: 1px solid #ccc;
   border-radius: 6px;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
 button {
   width: 100%;
-  padding: 0.7rem;
+  padding: 0.8rem;
   border: none;
   border-radius: 50px;
   font-weight: bold;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
 .govbr-button {
@@ -285,10 +281,45 @@ button {
 }
 
 hr {
-  margin: 1.5rem 0;
+  margin: 2rem 0;
   border: none;
   border-top: 1px solid #3685d8;
   width: 100%;
+}
+
+/* Rodapé corrigido */
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #00564c;
+  color: white;
+  padding: 1rem 3rem;
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.footer-texto {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Rawline Light', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: left;
+  max-width: 60%;
+}
+
+.footer-texto-p1 {
+  font-family: 'Rawline Bold', sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 0.5rem;
+}
+
+footer .logo-estado {
+  height: 100px;
+  width: auto;
+  max-width: 30%;
 }
 
 .esqueci-senha {
@@ -301,135 +332,11 @@ hr {
   color: #007BFF;
   text-decoration: underline;
   cursor: pointer;
-  font-size: 0.8rem;
-}
-
-/* Rodapé fixo */
-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #00564c;
-  color: white;
-  padding: 1rem 2rem;
   font-size: 0.85rem;
-  height: 130px;
-  flex-shrink: 0;
 }
 
-.footer-texto {
-  display: flex;
-  flex-direction: column;
-  font-family: 'Rawline Light', sans-serif;
-  font-size: 12px;
-  line-height: 1.4;
-  text-align: left;
-  max-width: 60%;
-}
-
-.footer-texto-p1 {
-  font-family: 'Rawline Bold', sans-serif;
-  font-weight: bold;
-  font-size: 16px;
-  margin-bottom: 0.3rem;
-}
-
-footer .logo-estado {
-  height: 90px;
-  width: auto;
-  max-width: 30%;
-}
-
-/* Responsivo - Adaptações para manter o layout original */
-
-/* Desktop grande: ajustes para telas maiores */
-@media (min-width: 1400px) {
-  .container {
-    padding: 0 4rem;
-  }
-  
-  .logos {
-    gap: 2rem;
-  }
-  
-  .logo-rs-talentos,
-  .logo-professor {
-    height: 110px;
-  }
-  
-  .logo-estado {
-    height: 120px;
-  }
-  
-  .form {
-    max-width: 350px;
-    padding: 2rem;
-  }
-  
-  h2 {
-    font-size: 1.7rem;
-    margin-bottom: 2rem;
-  }
-}
-
-/* Tablet: 768px to 1023px */
-@media (max-width: 1023px) and (min-width: 768px) {
-  .container {
-    padding: 0 1.5rem;
-    height: calc(100vh - 170px);
-  }
-  
-  .left {
-    width: 55%;
-  }
-  
-  .right {
-    width: 45%;
-  }
-  
-  .logos {
-    gap: 1rem;
-  }
-  
-  .logo-rs-talentos,
-  .logo-professor {
-    height: 80px;
-  }
-  
-  .students img {
-    margin-left: -10%;
-  }
-  
-  .form {
-    max-width: 280px;
-    padding: 1.2rem;
-  }
-  
-  .logo-estado {
-    height: 80px;
-  }
-  
-  h2 {
-    font-size: 1.3rem;
-    margin-bottom: 1.2rem;
-  }
-  
-  footer {
-    padding: 0.8rem 1.5rem;
-    height: 120px;
-  }
-  
-  .footer-texto-p1 {
-    font-size: 14px;
-  }
-  
-  footer .logo-estado {
-    height: 80px;
-  }
-}
-
-/* Mobile: 767px and below - Mantém comportamento original com scroll */
-@media (max-width: 767px) {
+/* Responsivo */
+@media (max-width: 768px) {
   .desktop-nav {
     display: none;
   }
@@ -442,16 +349,8 @@ footer .logo-estado {
     padding: 0 15px;
   }
   
-  body {
-    min-height: 100vh;
-  }
-  
   .container {
     flex-direction: column;
-    padding: 1rem;
-    height: auto;
-    min-height: calc(100vh - 200px);
-    overflow: visible;
   }
 
   .left, .right {
@@ -460,99 +359,18 @@ footer .logo-estado {
   
   .left {
     order: 2;
-    margin-top: 2rem;
-    height: auto;
   }
   
   .right {
     order: 1;
-    height: auto;
   }
 
-  .logos {
+  .left .logos {
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-  
-  .logo-rs-talentos,
-  .logo-professor {
-    height: 80px;
   }
 
-  .students {
-    margin-top: 1rem;
-    height: auto;
-    flex: none;
-  }
-  
-  .students img {
-    max-width: 100%;
-    max-height: 300px;
-    margin-left: 0;
-    margin-top: 0;
-  }
-  
-  .logo-estado {
-    height: 80px;
-  }
-  
-  .form {
-    max-width: 100%;
-    padding: 1.5rem;
-  }
-  
-  h2 {
-    font-size: 1.4rem;
-  }
-  
-  footer {
-    flex-direction: column;
-    text-align: center;
-    padding: 1rem;
-    height: auto;
-  }
-  
-  .footer-texto {
-    max-width: 100%;
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-  
-  footer .logo-estado {
-    height: 60px;
-  }
-}
-
-/* Extra small devices */
-@media (max-width: 480px) {
-  .container {
-    padding: 0.5rem;
-  }
-  
-  .form {
-    padding: 1rem;
-  }
-  
-  h2 {
-    font-size: 1.2rem;
-  }
-  
-  .login-title {
-    font-size: 1rem;
-  }
-  
-  input, button {
-    font-size: 0.9rem;
-  }
-  
-  .logo-rs-talentos,
-  .logo-professor {
-    height: 60px;
-  }
-  
-  .logo-estado {
-    height: 60px;
+  .left footer {
+    font-size: 0.75rem;
   }
 }
