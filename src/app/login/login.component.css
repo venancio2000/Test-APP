@@ -144,7 +144,7 @@ body {
   justify-content: space-between;
   height: 100%;
   position: relative;
-  overflow: hidden; /* Evita que a imagem saia dos limites */
+  overflow: hidden;
 }
 
 .branding {
@@ -167,21 +167,24 @@ body {
 }
 
 .students {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70vh;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-end;
-  width: 100%;
-  height: 100%;
-  position: relative;
-  margin-top: auto;
+  overflow: hidden;
 }
 
 .students img {
-  width: 100%;
-  max-width: 970px;
-  height: auto;
-  object-fit: contain;
-  object-position: center bottom;
+  width: auto;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: left bottom;
+  transform: translateX(-20%);
   transition: all 0.3s ease;
 }
 
@@ -338,8 +341,12 @@ footer .logo-estado {
 
 /* Responsivo */
 @media (max-width: 1200px) {
+  .students {
+    height: 65vh;
+  }
+  
   .students img {
-    max-width: 800px;
+    transform: translateX(-15%);
   }
 }
 
@@ -348,8 +355,12 @@ footer .logo-estado {
     padding: 0 2rem;
   }
   
+  .students {
+    height: 60vh;
+  }
+  
   .students img {
-    max-width: 700px;
+    transform: translateX(-10%);
   }
   
   .logos {
@@ -383,12 +394,14 @@ footer .logo-estado {
 
   .left, .right {
     width: 100%;
+    position: relative;
   }
   
   .left {
     order: 2;
     height: auto;
     overflow: visible;
+    min-height: 400px;
   }
   
   .right {
@@ -397,10 +410,13 @@ footer .logo-estado {
   }
 
   .logos {
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
     gap: 1rem;
     margin-bottom: 2rem;
+    position: relative;
+    z-index: 2;
   }
   
   .logo-rs-talentos,
@@ -409,14 +425,19 @@ footer .logo-estado {
   }
 
   .students {
-    margin-top: 2rem;
-    height: auto;
+    position: relative;
+    height: 300px;
+    margin-top: 1rem;
+    justify-content: center;
   }
   
   .students img {
-    max-width: 100%;
-    width: 90%;
+    width: 100%;
     height: auto;
+    max-height: 300px;
+    transform: none;
+    object-fit: contain;
+    object-position: center bottom;
   }
 
   footer {
@@ -442,12 +463,17 @@ footer .logo-estado {
     padding: 1.5rem;
   }
   
+  .students {
+    height: 250px;
+  }
+  
   .students img {
-    width: 95%;
+    max-height: 250px;
   }
   
   .logos {
     margin-bottom: 1rem;
+    gap: 0.5rem;
   }
   
   .logo-rs-talentos,
