@@ -1,6 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { LoginComponent } from './login/login.component';
+import { NewLoginComponent } from './new-login/new-login.component';
 import { NgModule } from '@angular/core';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
@@ -20,7 +21,8 @@ export const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   },
-  { path: 'login', component: LoginComponent }, // <- fora do LayoutComponent
+  { path: 'login', component: LoginComponent }, // <- login original
+  { path: 'new-login', component: NewLoginComponent }, // <- nova página de login
   { path: 'redefinir-senha', component: RedefinirSenhaComponent },
   { path: '**', redirectTo: '' }
 ];
