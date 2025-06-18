@@ -1,124 +1,224 @@
-<!-- Top Navigation Bar -->
-<nav class="top-nav">
-  <div class="nav-container">
-    <div class="nav-brand">rs.gov.br</div>
-    <div class="nav-links desktop-nav">
-      <a href="#" class="nav-link">NOTÍCIAS</a>
-      <a href="#" class="nav-link">SERVIÇOS</a>
-      <a href="#" class="nav-link">CENTRAL DO CIDADÃO</a>
-      <a href="#" class="nav-link">TRANSPARÊNCIA</a>
-      <a href="#" class="nav-link">SECRETARIAS E ÓRGÃOS</a>
-      <a href="#" class="nav-link">DIÁRIO OFICIAL</a>
-      <a href="#" class="nav-link">>> SOS RS <<</a>
-    </div>
-    <button class="hamburger-menu" [class.active]="mobileMenuOpen" (click)="toggleMobileMenu()">
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-    </button>
-  </div>
-  
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" [class.active]="mobileMenuOpen">
-    <a href="#" class="mobile-nav-link">NOTÍCIAS</a>
-    <a href="#" class="mobile-nav-link">SERVIÇOS</a>
-    <a href="#" class="mobile-nav-link">CENTRAL DO CIDADÃO</a>
-    <a href="#" class="mobile-nav-link">TRANSPARÊNCIA</a>
-    <a href="#" class="mobile-nav-link">SECRETARIAS E ÓRGÃOS</a>
-    <a href="#" class="mobile-nav-link">DIÁRIO OFICIAL</a>
-    <a href="#" class="mobile-nav-link">>> SOS RS <<</a>
-  </div>
-</nav>
-
-<!-- Original Layout Container -->
-<div class="container">
-  <div class="left">
-    <div class="branding">
-      <div class="logos">
-        <img
-          class="logo-rs-talentos"
-          src="assets/logo-rs-talentos.png"
-          alt="RS Talentos"
-        />
-        <img
-          class="logo-professor"
-          src="assets/logo-professor-do-amanha.png"
-          alt="Professor do Amanhã"
-        />
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Gestão de Bolsas - Professor do Amanhã</title>
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <nav class="top-nav">
+    <div class="nav-container">
+      <div class="nav-brand">rs.gov.br</div>
+      <div class="nav-links desktop-nav">
+        <a href="#" class="nav-link">NOTÍCIAS</a>
+        <a href="#" class="nav-link">SERVIÇOS</a>
+        <a href="#" class="nav-link">CENTRAL DO CIDADÃO</a>
+        <a href="#" class="nav-link">TRANSPARÊNCIA</a>
+        <a href="#" class="nav-link">SECRETARIAS E ÓRGÃOS</a>
+        <a href="#" class="nav-link">DIÁRIO OFICIAL</a>
+        <a href="#" class="nav-link">>> SOS RS <<</a>
       </div>
-      <div class="students">
-        <img src="assets/students.png" alt="Estudantes" />
+      <button class="hamburger-menu" (click)="toggleMobileMenu()">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" [class.active]="mobileMenuOpen">
+      <a href="#" class="mobile-nav-link">NOTÍCIAS</a>
+      <a href="#" class="mobile-nav-link">SERVIÇOS</a>
+      <a href="#" class="mobile-nav-link">CENTRAL DO CIDADÃO</a>
+      <a href="#" class="mobile-nav-link">TRANSPARÊNCIA</a>
+      <a href="#" class="mobile-nav-link">SECRETARIAS E ÓRGÃOS</a>
+      <a href="#" class="mobile-nav-link">DIÁRIO OFICIAL</a>
+      <a href="#" class="mobile-nav-link">>> SOS RS <<</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="main-container">
+    <!-- Desktop Layout -->
+    <div class="desktop-layout">
+      <!-- Left Section -->
+      <div class="left-section">
+        <div class="branding">
+          <div class="logos">
+            <img
+              class="logo-rs-talentos"
+              src="assets/logo-rs-talentos.png"
+              alt="RS Talentos"
+            />
+            <img
+              class="logo-professor"
+              src="assets/logo-professor-do-amanha.png"
+              alt="Professor do Amanhã"
+            />
+          </div>
+          <div class="students">
+            <img src="assets/students.png" alt="Estudantes" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Section -->
+      <div class="right-section">
+        <div class="government-header">
+          <img class="logo-estado" src="assets/logo-rs-estado.png" alt="Logo RS" />
+          <div class="government-info">
+            <div class="government-title">GOVERNO DO ESTADO</div>
+            <div class="government-subtitle">RIO GRANDE DO SUL</div>
+            <div class="department">SECRETARIA DE INOVAÇÃO,<br>CIÊNCIA E TECNOLOGIA</div>
+          </div>
+        </div>
+
+        <div class="login-container">
+          <h1 class="system-title">
+            SISTEMA <span class="highlight">DE</span><br />
+            GESTÃO <span class="highlight">DE</span> BOLSAS
+          </h1>
+
+          <!-- Login Bolsista Section -->
+          <div class="login-section">
+            <h2 class="login-title">Login <span class="blue">Bolsista</span></h2>
+            <p class="login-description">
+              Para <strong>criar</strong> ou <strong>acessar</strong> sua conta Egov:
+            </p>
+            <button class="govbr-button">
+              <i class="fas fa-user"></i>
+              Entrar com gov.br
+            </button>
+          </div>
+
+          <hr class="divider" />
+
+          <!-- Login Institucional Section -->
+          <div class="login-section">
+            <h2 class="login-title">Login <span class="blue">Institucional</span></h2>
+            <form class="login-form" (ngSubmit)="fazerLogin()">
+              <input
+                type="text"
+                placeholder="Usuário"
+                [(ngModel)]="cpf"
+                name="cpf"
+                class="form-input"
+                required
+              />
+              <input
+                type="password"
+                placeholder="Senha"
+                [(ngModel)]="senha"
+                name="senha"
+                class="form-input"
+                required
+              />
+              <button
+                type="submit"
+                class="login-button"
+                [disabled]="loading"
+              >
+                @if (!loading) {
+                <i class="fas fa-user"></i> Acessar
+                } @if (loading) {
+                <i class="fas fa-spinner fa-spin"></i> Carregando...
+                }
+              </button>
+              <a href="#" class="forgot-password" (click)="abrirDialogEsqueciSenha()">
+                Esqueci minha senha
+              </a>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="right">
-    <img class="logo-estado" src="assets/logo-rs-estado.png" alt="Logo RS" />
-    <div class="form">
-      <h2>
-        <strong>SISTEMA</strong> <span class="verde"> DE</span><br />GESTÃO
-        <span class="verde">DE</span> BOLSAS
-      </h2>
-      <div class="login-box">
-        <div class="section">
-          <p class="login-title"><span class="azul">Login</span> Bolsista</p>
-          <p>
-            Para <strong>criar</strong> ou <strong>acessar</strong> sua conta
-            Egov:
+    <!-- Mobile Layout -->
+    <div class="mobile-layout">
+      <div class="mobile-header">
+        <img class="mobile-logo-estado" src="assets/logo-rs-estado.png" alt="Logo RS" />
+        <div class="mobile-government-info">
+          <div class="mobile-government-title">GOVERNO DO ESTADO</div>
+          <div class="mobile-government-subtitle">RIO GRANDE DO SUL</div>
+          <div class="mobile-department">SECRETARIA DE INOVAÇÃO,<br>CIÊNCIA E TECNOLOGIA</div>
+        </div>
+      </div>
+
+      <div class="mobile-login-container">
+        <h1 class="mobile-system-title">
+          SISTEMA <span class="highlight">DE</span><br />
+          GESTÃO <span class="highlight">DE</span> BOLSAS
+        </h1>
+
+        <!-- Mobile Login Bolsista Section -->
+        <div class="mobile-login-section">
+          <h2 class="mobile-login-title">Login <span class="blue">Bolsista</span></h2>
+          <p class="mobile-login-description">
+            Para <strong>criar</strong> ou <strong>acessar</strong> sua conta Egov:
           </p>
-          <br />
-          <button class="govbr-button">
-            <i class="fas fa-user"></i>Entrar com gov.br
+          <button class="mobile-govbr-button">
+            <i class="fas fa-user"></i>
+            Entrar com gov.br
           </button>
         </div>
 
-        <hr />
+        <hr class="mobile-divider" />
 
-        <div class="section">
-          <p class="login-title">
-            <span class="azul">Login</span> Institucional
-          </p>
-          <input
-            type="text"
-            placeholder="CPF"
-            [(ngModel)]="cpf"
-            name="cpf"
-            mask="000.000.000-00"
-          />
-          <input
-            type="password"
-            placeholder="Senha"
-            [(ngModel)]="senha"
-            name="senha"
-          />
-          <button
-            (click)="fazerLogin()"
-            class="acessar-button"
-            [disabled]="loading"
-          >
-            @if (!loading) {
-            <i class="fas fa-user"></i> Acessar } @if (loading) {
-            <i class="fas fa-spinner fa-spin"></i> Carregando... }
-          </button>
-          <p class="esqueci-senha">
-            <a (click)="abrirDialogEsqueciSenha()">Esqueci minha senha</a>
-          </p>
+        <!-- Mobile Login Institucional Section -->
+        <div class="mobile-login-section">
+          <h2 class="mobile-login-title">Login <span class="blue">Institucional</span></h2>
+          <form class="mobile-login-form" (ngSubmit)="fazerLogin()">
+            <input
+              type="text"
+              placeholder="Usuário"
+              [(ngModel)]="cpf"
+              name="cpf"
+              class="mobile-form-input"
+              required
+            />
+            <input
+              type="password"
+              placeholder="Senha"
+              [(ngModel)]="senha"
+              name="senha"
+              class="mobile-form-input"
+              required
+            />
+            <button
+              type="submit"
+              class="mobile-login-button"
+              [disabled]="loading"
+            >
+              @if (!loading) {
+              <i class="fas fa-user"></i> Acessar
+              } @if (loading) {
+              <i class="fas fa-spinner fa-spin"></i> Carregando...
+              }
+            </button>
+          </form>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<footer>
-  <div class="footer-texto">
-    <p class="footer-texto-p1">Secretaria de Inovação, Ciência e Tecnologia</p>
-    <p>Av. Borges de Medeiros, 1501 - 18º andar - Bairro Praia de Belas</p>
-    <p>Centro Administrativo Fernando Ferrari</p>
-    <p>Porto Alegre/RS</p>
-  </div>
-  <img
-    class="logo-estado"
-    src="assets/logo-rs-estado-footer.png"
-    alt="Logo RS"
-  />
-</footer>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-text">
+        <div class="footer-title">Secretaria de Inovação, Ciência e Tecnologia</div>
+        <div class="footer-address">
+          Av. Borges de Medeiros, 1501 - 18º andar - Bairro Praia de Belas<br>
+          Centro Administrativo Fernando Ferrari<br>
+          Porto Alegre/RS
+        </div>
+      </div>
+      <img
+        class="footer-logo"
+        src="assets/logo-rs-estado-footer.png"
+        alt="Logo RS"
+      />
+    </div>
+  </footer>
+</body>
+</html>
