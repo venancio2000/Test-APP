@@ -11,7 +11,6 @@ import { ConfigService } from '../../config/config.service';
 import { AuthService } from '../auth.service';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { EsqueciSenhaDialogComponent } from '../esqueci-senha-dialog/esqueci-senha-dialog.component';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -19,13 +18,12 @@ import { CommonModule } from '@angular/common';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   imports: [
-    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     NgxMaskDirective,
     MatDialogModule,
-    EsqueciSenhaDialogComponent
+    EsqueciSenhaDialogComponent // se for standalone
   ],
   providers: [provideNgxMask()]
 })
@@ -33,7 +31,6 @@ export class LoginComponent {
   cpf: string = '';
   senha: string = '';
   loading = false;
-  mobileMenuOpen = false;
 
   constructor(
     private http: HttpClient,
@@ -43,10 +40,6 @@ export class LoginComponent {
     private authService: AuthService,
     private dialog: MatDialog
   ) {}
-
-  toggleMobileMenu() {
-    this.mobileMenuOpen = !this.mobileMenuOpen;
-  }
 
   fazerLogin() {
     this.loading = true;
