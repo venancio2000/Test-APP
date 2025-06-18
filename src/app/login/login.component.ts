@@ -1,22 +1,31 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import {
-  FormBuilder,
-  FormGroup,
   FormsModule,
-  Validators,
+  ReactiveFormsModule,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ConfigService } from '../../config/config.service';
 import { AuthService } from '../auth.service';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { EsqueciSenhaDialogComponent } from '../esqueci-senha-dialog/esqueci-senha-dialog.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, HttpClientModule, NgxMaskDirective],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgxMaskDirective,
+    MatDialogModule,
+    EsqueciSenhaDialogComponent // se for standalone
+  ],
+  providers: [provideNgxMask()]
 })
 export class LoginComponent {
   cpf: string = '';
@@ -58,7 +67,7 @@ export class LoginComponent {
                   localStorage.setItem('nomePerfil', user.perfil.nome);
                   this.authService.setNomeUsuario(user.nome);
                 },
-                error: (err) => {
+                error: () => {
                   this.snackBar.open('Erro ao buscar usuário', 'Fechar', {
                     duration: 3000,
                     verticalPosition: 'top',
