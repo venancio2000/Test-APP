@@ -22,11 +22,10 @@ body {
 .container {
   display: flex;
   flex-direction: row;
-  align-items: stretch;
+  align-items: center;
   justify-content: space-between;
   min-height: calc(100vh - 140px);
-  padding: 0 2rem;
-  gap: 2rem;
+  padding: 0 4rem;
 }
 
 .left {
@@ -36,53 +35,44 @@ body {
   justify-content: space-between;
   height: 100%;
   position: relative;
-  min-height: calc(100vh - 200px);
 }
 
 .branding {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  flex-shrink: 0;
 }
 
 .logos {
   display: flex;
   gap: 2rem;
-  margin-bottom: 2rem;
-  margin-top: 2rem;
-  flex-wrap: wrap;
+  margin-bottom: 3rem;
+  margin-top: 2rem; 
 }
 
 .logo-rs-talentos,
 .logo-professor {
   height: 120px;
   width: auto;
-  max-width: 100%;
-  object-fit: contain;
 }
 
 .students {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
-  flex: 1;
   width: 100%;
-  position: relative;
-  overflow: hidden;
-  min-height: 400px;
+  align-items: flex-end;
+  text-align: center;
+  margin-top: auto;
+  padding-bottom: 0;
 }
 
 .students img {
-  max-width: 100%;
-  height: auto;
-  max-height: 80vh;
-  object-fit: contain;
-  object-position: center bottom;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  max-width: 970px;
+  max-height: 900px;
+  margin-left: -37%;
+  margin-top: -5%;
+  margin: 0 auto; /* <-- Centraliza a imagem */
+  
 }
 
 .right {
@@ -91,15 +81,11 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  min-width: 350px;
 }
 
 .logo-estado {
   height: 120px;
   margin-bottom: 1rem;
-  max-width: 100%;
-  object-fit: contain;
 }
 
 .form {
@@ -202,7 +188,6 @@ footer {
   padding: 1rem 3rem;
   font-size: 0.9rem;
   flex-wrap: wrap;
-  flex-shrink: 0;
 }
 
 .footer-texto {
@@ -226,7 +211,26 @@ footer .logo-estado {
   height: 100px;
   width: auto;
   max-width: 30%;
-  object-fit: contain;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .left, .right {
+    width: 100%;
+  }
+
+  .left .logos {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .left footer {
+    font-size: 0.75rem;
+  }
 }
 
 .esqueci-senha {
@@ -240,144 +244,4 @@ footer .logo-estado {
   text-decoration: underline;
   cursor: pointer;
   font-size: 0.85rem;
-}
-
-/* Responsivo */
-@media (max-width: 1200px) {
-  .container {
-    padding: 0 1rem;
-  }
-  
-  .students img {
-    max-height: 70vh;
-  }
-}
-
-@media (max-width: 992px) {
-  .container {
-    flex-direction: column;
-    min-height: auto;
-    padding: 1rem;
-  }
-
-  .left, .right {
-    width: 100%;
-  }
-  
-  .left {
-    min-height: 60vh;
-    order: 2;
-  }
-  
-  .right {
-    order: 1;
-    min-width: auto;
-    margin-bottom: 2rem;
-  }
-
-  .logos {
-    justify-content: center;
-    gap: 1rem;
-  }
-  
-  .students {
-    min-height: 300px;
-  }
-  
-  .students img {
-    max-height: 50vh;
-    position: relative;
-    transform: none;
-    left: auto;
-  }
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding: 0.5rem;
-  }
-  
-  .logos {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .logo-rs-talentos,
-  .logo-professor {
-    height: 80px;
-  }
-  
-  .logo-estado {
-    height: 80px;
-  }
-
-  .form {
-    padding: 1.5rem;
-  }
-  
-  h2 {
-    font-size: 1.4rem;
-  }
-  
-  .students {
-    min-height: 250px;
-  }
-  
-  .students img {
-    max-height: 40vh;
-  }
-
-  footer {
-    padding: 1rem;
-    font-size: 0.8rem;
-    flex-direction: column;
-    gap: 1rem;
-    text-align: center;
-  }
-  
-  .footer-texto {
-    max-width: 100%;
-    text-align: center;
-  }
-  
-  .footer-texto-p1 {
-    font-size: 16px;
-  }
-  
-  footer .logo-estado {
-    height: 80px;
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .logo-rs-talentos,
-  .logo-professor {
-    height: 60px;
-  }
-  
-  .logo-estado {
-    height: 60px;
-  }
-  
-  .form {
-    padding: 1rem;
-  }
-  
-  h2 {
-    font-size: 1.2rem;
-  }
-  
-  .students {
-    min-height: 200px;
-  }
-  
-  .students img {
-    max-height: 30vh;
-  }
-  
-  footer .logo-estado {
-    height: 60px;
-  }
 }
