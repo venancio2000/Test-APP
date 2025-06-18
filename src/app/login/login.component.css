@@ -347,7 +347,7 @@ footer .logo-estado {
   }
 
   .nav-container {
-    padding: 0 15px;
+    padding: 0 10px;
   }
 
   .container {
@@ -374,4 +374,8 @@ footer .logo-estado {
   .left footer {
     font-size: 0.75rem;
   }
+  .logos,
+  .students img {
+  display: none;
+}
 }
