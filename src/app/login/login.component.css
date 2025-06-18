@@ -144,7 +144,6 @@ body {
   justify-content: space-between;
   height: 100%;
   position: relative;
-  overflow: hidden; /* Evita que a imagem saia dos limites */
 }
 
 .branding {
@@ -169,20 +168,20 @@ body {
 .students {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
   width: 100%;
-  height: 100%;
-  position: relative;
+  align-items: flex-end;
+  text-align: center;
   margin-top: auto;
+  padding-bottom: 0;
 }
 
 .students img {
-  width: 100%;
   max-width: 970px;
-  height: auto;
-  object-fit: contain;
-  object-position: center bottom;
-  transition: all 0.3s ease;
+  max-height: 900px;
+  margin-left: -37%;
+  margin-top: -5%;
+  margin: 0 auto; /* <-- Centraliza a imagem */
+  
 }
 
 .right {
@@ -337,31 +336,6 @@ footer .logo-estado {
 }
 
 /* Responsivo */
-@media (max-width: 1200px) {
-  .students img {
-    max-width: 800px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .container {
-    padding: 0 2rem;
-  }
-  
-  .students img {
-    max-width: 700px;
-  }
-  
-  .logos {
-    gap: 1.5rem;
-  }
-  
-  .logo-rs-talentos,
-  .logo-professor {
-    height: 100px;
-  }
-}
-
 @media (max-width: 768px) {
   .desktop-nav {
     display: none;
@@ -377,8 +351,6 @@ footer .logo-estado {
   
   .container {
     flex-direction: column;
-    padding: 1rem;
-    min-height: auto;
   }
 
   .left, .right {
@@ -387,71 +359,18 @@ footer .logo-estado {
   
   .left {
     order: 2;
-    height: auto;
-    overflow: visible;
   }
   
   .right {
     order: 1;
-    margin-bottom: 2rem;
   }
 
-  .logos {
+  .left .logos {
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-  
-  .logo-rs-talentos,
-  .logo-professor {
-    height: 80px;
   }
 
-  .students {
-    margin-top: 2rem;
-    height: auto;
-  }
-  
-  .students img {
-    max-width: 100%;
-    width: 90%;
-    height: auto;
-  }
-
-  footer {
+  .left footer {
     font-size: 0.75rem;
-    padding: 1rem;
-  }
-  
-  .footer-texto {
-    font-size: 12px;
-  }
-  
-  .footer-texto-p1 {
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 0.5rem;
-  }
-  
-  .form {
-    padding: 1.5rem;
-  }
-  
-  .students img {
-    width: 95%;
-  }
-  
-  .logos {
-    margin-bottom: 1rem;
-  }
-  
-  .logo-rs-talentos,
-  .logo-professor {
-    height: 60px;
   }
 }
