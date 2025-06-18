@@ -106,7 +106,7 @@
   border-bottom: none;
 }
 
-/* Original Styles - Restored */
+/* Original Styles - Mantendo exatamente como estava */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -180,8 +180,7 @@ body {
   max-height: 900px;
   margin-left: -37%;
   margin-top: -5%;
-  margin: 0 auto; /* <-- Centraliza a imagem */
-  
+  margin: 0 auto;
 }
 
 .right {
@@ -335,8 +334,49 @@ footer .logo-estado {
   font-size: 0.85rem;
 }
 
-/* Responsivo */
-@media (max-width: 768px) {
+/* Responsivo - Adaptações para manter o layout original */
+
+/* Tablet: 768px to 1023px */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .container {
+    padding: 0 2rem;
+  }
+  
+  .left {
+    width: 55%;
+  }
+  
+  .right {
+    width: 45%;
+  }
+  
+  .logos {
+    gap: 1.5rem;
+  }
+  
+  .logo-rs-talentos,
+  .logo-professor {
+    height: 100px;
+  }
+  
+  .students img {
+    max-width: 100%;
+    max-height: 600px;
+    margin-left: 0;
+  }
+  
+  .form {
+    max-width: 320px;
+    padding: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Mobile: 767px and below */
+@media (max-width: 767px) {
   .desktop-nav {
     display: none;
   }
@@ -351,6 +391,8 @@ footer .logo-estado {
   
   .container {
     flex-direction: column;
+    padding: 1rem;
+    min-height: calc(100vh - 200px);
   }
 
   .left, .right {
@@ -359,18 +401,94 @@ footer .logo-estado {
   
   .left {
     order: 2;
+    margin-top: 2rem;
   }
   
   .right {
     order: 1;
   }
 
-  .left .logos {
+  .logos {
     flex-direction: column;
     align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .logo-rs-talentos,
+  .logo-professor {
+    height: 80px;
   }
 
-  .left footer {
-    font-size: 0.75rem;
+  .students {
+    margin-top: 1rem;
+  }
+  
+  .students img {
+    max-width: 100%;
+    max-height: 300px;
+    margin-left: 0;
+    margin-top: 0;
+  }
+  
+  .logo-estado {
+    height: 80px;
+  }
+  
+  .form {
+    max-width: 100%;
+    padding: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 1.4rem;
+  }
+  
+  footer {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  .footer-texto {
+    max-width: 100%;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  footer .logo-estado {
+    height: 60px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  .container {
+    padding: 0.5rem;
+  }
+  
+  .form {
+    padding: 1rem;
+  }
+  
+  h2 {
+    font-size: 1.2rem;
+  }
+  
+  .login-title {
+    font-size: 1rem;
+  }
+  
+  input, button {
+    font-size: 0.9rem;
+  }
+  
+  .logo-rs-talentos,
+  .logo-professor {
+    height: 60px;
+  }
+  
+  .logo-estado {
+    height: 60px;
   }
 }
