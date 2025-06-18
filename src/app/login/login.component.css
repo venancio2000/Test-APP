@@ -1,3 +1,112 @@
+/* Top Navigation */
+.top-nav {
+  background-color: #24E8BA;
+  padding: 8px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.nav-brand {
+  font-weight: bold;
+  color: #015958;
+  font-size: 14px;
+}
+
+.desktop-nav {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
+  color: #015958;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #00564c;
+}
+
+.nav-link:last-child {
+  color: #ff0000;
+  font-weight: bold;
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.hamburger-line {
+  width: 25px;
+  height: 3px;
+  background-color: #015958;
+  margin: 2px 0;
+  transition: 0.3s;
+}
+
+.hamburger-menu.active .hamburger-line:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger-menu.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-menu.active .hamburger-line:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background-color: #24E8BA;
+  padding: 20px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.mobile-menu.active {
+  display: flex;
+}
+
+.mobile-nav-link {
+  color: #015958;
+  text-decoration: none;
+  padding: 10px 0;
+  font-size: 14px;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(1, 89, 88, 0.1);
+}
+
+.mobile-nav-link:last-child {
+  color: #ff0000;
+  font-weight: bold;
+  border-bottom: none;
+}
+
+/* Original Styles - Restored */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -35,6 +144,7 @@ body {
   justify-content: space-between;
   height: 100%;
   position: relative;
+  overflow: hidden; /* Evita que a imagem saia dos limites */
 }
 
 .branding {
@@ -59,20 +169,20 @@ body {
 .students {
   display: flex;
   justify-content: center;
-  width: 100%;
   align-items: flex-end;
-  text-align: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
   margin-top: auto;
-  padding-bottom: 0;
 }
 
 .students img {
+  width: 100%;
   max-width: 970px;
-  max-height: 900px;
-  margin-left: -37%;
-  margin-top: -5%;
-  margin: 0 auto; /* <-- Centraliza a imagem */
-  
+  height: auto;
+  object-fit: contain;
+  object-position: center bottom;
+  transition: all 0.3s ease;
 }
 
 .right {
@@ -213,26 +323,6 @@ footer .logo-estado {
   max-width: 30%;
 }
 
-/* Responsivo */
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-  }
-
-  .left, .right {
-    width: 100%;
-  }
-
-  .left .logos {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .left footer {
-    font-size: 0.75rem;
-  }
-}
-
 .esqueci-senha {
   text-align: center;
   margin-top: 6px;
@@ -244,4 +334,124 @@ footer .logo-estado {
   text-decoration: underline;
   cursor: pointer;
   font-size: 0.85rem;
+}
+
+/* Responsivo */
+@media (max-width: 1200px) {
+  .students img {
+    max-width: 800px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 2rem;
+  }
+  
+  .students img {
+    max-width: 700px;
+  }
+  
+  .logos {
+    gap: 1.5rem;
+  }
+  
+  .logo-rs-talentos,
+  .logo-professor {
+    height: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+  
+  .hamburger-menu {
+    display: flex;
+  }
+  
+  .nav-container {
+    padding: 0 15px;
+  }
+  
+  .container {
+    flex-direction: column;
+    padding: 1rem;
+    min-height: auto;
+  }
+
+  .left, .right {
+    width: 100%;
+  }
+  
+  .left {
+    order: 2;
+    height: auto;
+    overflow: visible;
+  }
+  
+  .right {
+    order: 1;
+    margin-bottom: 2rem;
+  }
+
+  .logos {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .logo-rs-talentos,
+  .logo-professor {
+    height: 80px;
+  }
+
+  .students {
+    margin-top: 2rem;
+    height: auto;
+  }
+  
+  .students img {
+    max-width: 100%;
+    width: 90%;
+    height: auto;
+  }
+
+  footer {
+    font-size: 0.75rem;
+    padding: 1rem;
+  }
+  
+  .footer-texto {
+    font-size: 12px;
+  }
+  
+  .footer-texto-p1 {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0.5rem;
+  }
+  
+  .form {
+    padding: 1.5rem;
+  }
+  
+  .students img {
+    width: 95%;
+  }
+  
+  .logos {
+    margin-bottom: 1rem;
+  }
+  
+  .logo-rs-talentos,
+  .logo-professor {
+    height: 60px;
+  }
 }
