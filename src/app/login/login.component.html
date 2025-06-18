@@ -1,224 +1,157 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sistema de Gestão de Bolsas - Professor do Amanhã</title>
-</head>
-<body>
-  <!-- Top Navigation Bar -->
-  <nav class="top-nav">
-    <div class="nav-container">
-      <div class="nav-brand">rs.gov.br</div>
-      <div class="nav-links desktop-nav">
-        <a href="#" class="nav-link">NOTÍCIAS</a>
-        <a href="#" class="nav-link">SERVIÇOS</a>
-        <a href="#" class="nav-link">CENTRAL DO CIDADÃO</a>
-        <a href="#" class="nav-link">TRANSPARÊNCIA</a>
-        <a href="#" class="nav-link">SECRETARIAS E ÓRGÃOS</a>
-        <a href="#" class="nav-link">DIÁRIO OFICIAL</a>
-        <a href="#" class="nav-link">>> SOS RS <<</a>
-      </div>
-      <button class="hamburger-menu" (click)="toggleMobileMenu()">
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-      </button>
+<div class="login-container">
+  <!-- Barra superior verde -->
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <span>rs.gov.br</span>
     </div>
-    
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" [class.active]="mobileMenuOpen">
-      <a href="#" class="mobile-nav-link">NOTÍCIAS</a>
-      <a href="#" class="mobile-nav-link">SERVIÇOS</a>
-      <a href="#" class="mobile-nav-link">CENTRAL DO CIDADÃO</a>
-      <a href="#" class="mobile-nav-link">TRANSPARÊNCIA</a>
-      <a href="#" class="mobile-nav-link">SECRETARIAS E ÓRGÃOS</a>
-      <a href="#" class="mobile-nav-link">DIÁRIO OFICIAL</a>
-      <a href="#" class="mobile-nav-link">>> SOS RS <<</a>
+    <div class="top-bar-right">
+      <span>NOTÍCIAS</span>
+      <span>SERVIÇOS</span>
+      <span>CENTRAL DO CIDADÃO</span>
+      <span>TRANSPARÊNCIA</span>
+      <span>SECRETARIAS E ÓRGÃOS</span>
+      <span>DIÁRIO OFICIAL</span>
+      <span>>>SOS RS<<</span>
     </div>
-  </nav>
+  </div>
 
-  <!-- Main Content -->
-  <div class="main-container">
-    <!-- Desktop Layout -->
-    <div class="desktop-layout">
-      <!-- Left Section -->
-      <div class="left-section">
-        <div class="branding">
-          <div class="logos">
-            <img
-              class="logo-rs-talentos"
-              src="assets/logo-rs-talentos.png"
-              alt="RS Talentos"
-            />
-            <img
-              class="logo-professor"
-              src="assets/logo-professor-do-amanha.png"
-              alt="Professor do Amanhã"
-            />
-          </div>
-          <div class="students">
-            <img src="assets/students.png" alt="Estudantes" />
-          </div>
+  <!-- Conteúdo principal -->
+  <div class="main-content">
+    <!-- Seção esquerda com logos e estudantes -->
+    <div class="left-section">
+      <div class="logos-section">
+        <div class="program-logos">
+          <img src="assets/logo-rs-talentos.png" alt="RS Talentos" class="logo-rs-talentos">
+          <img src="assets/logo-professor-do-amanha.png" alt="Professor do Amanhã" class="logo-professor">
         </div>
       </div>
-
-      <!-- Right Section -->
-      <div class="right-section">
-        <div class="government-header">
-          <img class="logo-estado" src="assets/logo-rs-estado.png" alt="Logo RS" />
-          <div class="government-info">
-            <div class="government-title">GOVERNO DO ESTADO</div>
-            <div class="government-subtitle">RIO GRANDE DO SUL</div>
-            <div class="department">SECRETARIA DE INOVAÇÃO,<br>CIÊNCIA E TECNOLOGIA</div>
-          </div>
-        </div>
-
-        <div class="login-container">
-          <h1 class="system-title">
-            SISTEMA <span class="highlight">DE</span><br />
-            GESTÃO <span class="highlight">DE</span> BOLSAS
-          </h1>
-
-          <!-- Login Bolsista Section -->
-          <div class="login-section">
-            <h2 class="login-title">Login <span class="blue">Bolsista</span></h2>
-            <p class="login-description">
-              Para <strong>criar</strong> ou <strong>acessar</strong> sua conta Egov:
-            </p>
-            <button class="govbr-button">
-              <i class="fas fa-user"></i>
-              Entrar com gov.br
-            </button>
-          </div>
-
-          <hr class="divider" />
-
-          <!-- Login Institucional Section -->
-          <div class="login-section">
-            <h2 class="login-title">Login <span class="blue">Institucional</span></h2>
-            <form class="login-form" (ngSubmit)="fazerLogin()">
-              <input
-                type="text"
-                placeholder="Usuário"
-                [(ngModel)]="cpf"
-                name="cpf"
-                class="form-input"
-                required
-              />
-              <input
-                type="password"
-                placeholder="Senha"
-                [(ngModel)]="senha"
-                name="senha"
-                class="form-input"
-                required
-              />
-              <button
-                type="submit"
-                class="login-button"
-                [disabled]="loading"
-              >
-                @if (!loading) {
-                <i class="fas fa-user"></i> Acessar
-                } @if (loading) {
-                <i class="fas fa-spinner fa-spin"></i> Carregando...
-                }
-              </button>
-              <a href="#" class="forgot-password" (click)="abrirDialogEsqueciSenha()">
-                Esqueci minha senha
-              </a>
-            </form>
-          </div>
-        </div>
+      
+      <div class="students-section">
+        <img src="assets/students.png" alt="Estudantes" class="students-image">
       </div>
     </div>
 
-    <!-- Mobile Layout -->
-    <div class="mobile-layout">
-      <div class="mobile-header">
-        <img class="mobile-logo-estado" src="assets/logo-rs-estado.png" alt="Logo RS" />
-        <div class="mobile-government-info">
-          <div class="mobile-government-title">GOVERNO DO ESTADO</div>
-          <div class="mobile-government-subtitle">RIO GRANDE DO SUL</div>
-          <div class="mobile-department">SECRETARIA DE INOVAÇÃO,<br>CIÊNCIA E TECNOLOGIA</div>
+    <!-- Seção direita com formulário de login -->
+    <div class="right-section">
+      <div class="government-header">
+        <img src="assets/logo-rs-estado.png" alt="Governo do Estado RS" class="government-logo">
+        <div class="government-text">
+          <h1>GOVERNO DO ESTADO</h1>
+          <h2>RIO GRANDE DO SUL</h2>
+          <p>SECRETARIA DE INOVAÇÃO,<br>CIÊNCIA E TECNOLOGIA</p>
         </div>
       </div>
 
-      <div class="mobile-login-container">
-        <h1 class="mobile-system-title">
-          SISTEMA <span class="highlight">DE</span><br />
-          GESTÃO <span class="highlight">DE</span> BOLSAS
-        </h1>
+      <div class="login-card">
+        <div class="system-title">
+          <h3>SISTEMA <span class="text-light">DE</span></h3>
+          <h3>GESTÃO <span class="text-light">DE</span> BOLSAS</h3>
+        </div>
 
-        <!-- Mobile Login Bolsista Section -->
-        <div class="mobile-login-section">
-          <h2 class="mobile-login-title">Login <span class="blue">Bolsista</span></h2>
-          <p class="mobile-login-description">
+        <!-- Login Bolsista -->
+        <div class="login-section">
+          <h4>Login <span class="text-blue">Bolsista</span></h4>
+          <p class="login-description">
             Para <strong>criar</strong> ou <strong>acessar</strong> sua conta Egov:
           </p>
-          <button class="mobile-govbr-button">
-            <i class="fas fa-user"></i>
+          <button class="govbr-button" type="button">
+            <mat-icon>person</mat-icon>
             Entrar com gov.br
           </button>
         </div>
 
-        <hr class="mobile-divider" />
+        <div class="divider"></div>
 
-        <!-- Mobile Login Institucional Section -->
-        <div class="mobile-login-section">
-          <h2 class="mobile-login-title">Login <span class="blue">Institucional</span></h2>
-          <form class="mobile-login-form" (ngSubmit)="fazerLogin()">
-            <input
-              type="text"
-              placeholder="Usuário"
-              [(ngModel)]="cpf"
-              name="cpf"
-              class="mobile-form-input"
-              required
-            />
-            <input
-              type="password"
-              placeholder="Senha"
-              [(ngModel)]="senha"
-              name="senha"
-              class="mobile-form-input"
-              required
-            />
-            <button
+        <!-- Login Institucional -->
+        <div class="login-section">
+          <h4>Login <span class="text-blue">Institucional</span></h4>
+          
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Usuário</mat-label>
+              <input 
+                matInput 
+                formControlName="username"
+                placeholder="Digite seu usuário"
+                [class.error]="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+              <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
+                Usuário é obrigatório
+              </mat-error>
+              <mat-error *ngIf="loginForm.get('username')?.hasError('email')">
+                Digite um email válido
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Senha</mat-label>
+              <input 
+                matInput 
+                [type]="hidePassword ? 'password' : 'text'"
+                formControlName="password"
+                placeholder="Digite sua senha"
+                [class.error]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+              <button 
+                mat-icon-button 
+                matSuffix 
+                type="button"
+                (click)="hidePassword = !hidePassword"
+                [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hidePassword">
+                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+                Senha é obrigatória
+              </mat-error>
+              <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">
+                Senha deve ter pelo menos 6 caracteres
+              </mat-error>
+            </mat-form-field>
+
+            <div class="form-options">
+              <mat-checkbox formControlName="rememberMe" class="remember-checkbox">
+                Lembrar-me
+              </mat-checkbox>
+            </div>
+
+            <button 
+              mat-raised-button 
+              color="primary" 
               type="submit"
-              class="mobile-login-button"
-              [disabled]="loading"
-            >
-              @if (!loading) {
-              <i class="fas fa-user"></i> Acessar
-              } @if (loading) {
-              <i class="fas fa-spinner fa-spin"></i> Carregando...
-              }
+              class="login-button"
+              [disabled]="loginForm.invalid || isLoading">
+              <mat-icon *ngIf="!isLoading">person</mat-icon>
+              <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
+              {{ isLoading ? 'Entrando...' : 'Acessar' }}
             </button>
+
+            <div class="forgot-password">
+              <a href="#" (click)="onForgotPassword($event)" class="forgot-link">
+                Esqueci minha senha
+              </a>
+            </div>
           </form>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Footer -->
+  <!-- Rodapé -->
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-text">
-        <div class="footer-title">Secretaria de Inovação, Ciência e Tecnologia</div>
-        <div class="footer-address">
-          Av. Borges de Medeiros, 1501 - 18º andar - Bairro Praia de Belas<br>
-          Centro Administrativo Fernando Ferrari<br>
-          Porto Alegre/RS
+        <h5>Secretaria de Inovação, Ciência e Tecnologia</h5>
+        <p>Av. Borges de Medeiros, 1501 - 18º andar - Bairro Praia de Belas</p>
+        <p>Centro Administrativo Fernando Ferrari</p>
+        <p>Porto Alegre/RS</p>
+      </div>
+      <div class="footer-logo">
+        <img src="assets/logo-rs-estado-footer.png" alt="Governo RS" class="government-footer-logo">
+        <div class="footer-government-text">
+          <span class="footer-title">GOVERNO DO ESTADO</span>
+          <span class="footer-subtitle">RIO GRANDE DO SUL</span>
+          <span class="footer-department">SECRETARIA DE INOVAÇÃO,<br>CIÊNCIA E TECNOLOGIA</span>
         </div>
       </div>
-      <img
-        class="footer-logo"
-        src="assets/logo-rs-estado-footer.png"
-        alt="Logo RS"
-      />
     </div>
   </footer>
-</body>
-</html>
+</div>
