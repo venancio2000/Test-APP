@@ -4,6 +4,12 @@ export interface Perfil {
   descricao?: string;
 }
 
+export interface Departamento {
+  id: number;
+  nome: string;
+  sigla?: string;
+}
+
 export interface UsuarioModel {
   id?: number;
   nome: string;
@@ -18,4 +24,5 @@ export interface UsuarioModel {
   createdAt?: string;
   perfil: Perfil;
   departamento?: string;
+  situacao: boolean;
 }

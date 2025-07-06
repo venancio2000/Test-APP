@@ -1,36 +1,35 @@
+import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import {
   FormsModule,
-  ReactiveFormsModule,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ConfigService } from '../../config/config.service';
 import { AuthService } from '../auth.service';
-import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { MatDialog } from '@angular/material/dialog';
 import { EsqueciSenhaDialogComponent } from '../esqueci-senha-dialog/esqueci-senha-dialog.component';
+import { NgxMaskDirective } from 'ngx-mask';
 
 @Component({
   selector: 'app-login',
   standalone: true,
+  imports: [CommonModule, FormsModule, HttpClientModule, NgxMaskDirective],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    NgxMaskDirective,
-    MatDialogModule,
-    EsqueciSenhaDialogComponent // se for standalone
-  ],
-  providers: [provideNgxMask()]
 })
 export class LoginComponent {
   cpf: string = '';
   senha: string = '';
   loading = false;
+
+  // ✅ Controle do menu mobile
+  mobileMenuOpen: boolean = false;
+
+  toggleMobileMenu(): void {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
+  }
 
   constructor(
     private http: HttpClient,
@@ -59,6 +58,7 @@ export class LoginComponent {
               verticalPosition: 'top',
               panelClass: ['success-snackbar'],
             });
+
             this.http
               .get<any>(`${this.config.apiUrl}/users/username/${this.cpf}`)
               .subscribe({
@@ -75,6 +75,7 @@ export class LoginComponent {
                   });
                 },
               });
+
             this.loading = false;
             this.router.navigate(['/dashboard']);
           } else {

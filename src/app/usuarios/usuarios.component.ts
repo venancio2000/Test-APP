@@ -15,8 +15,14 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 interface Usuario {
   id: number;
@@ -26,7 +32,7 @@ interface Usuario {
   sexo?: string;
   nomePerfil: string;
   departamento?: string;
-  situacao?: string;
+  situacao: boolean;
 }
 
 @Component({
@@ -47,6 +53,8 @@ interface Usuario {
     FormsModule,
     MatPaginatorModule,
     MatSortModule,
+    ReactiveFormsModule,
+    MatCheckboxModule,
   ],
   templateUrl: './usuarios.component.html',
   styleUrls: ['./usuarios.component.css'],
@@ -69,8 +77,10 @@ export class UsuariosComponent implements OnInit, AfterViewInit {
   loading = true;
   error = '';
   searchTerm = '';
+  form!: FormGroup;
 
   constructor(
+    private fb: FormBuilder,
     private router: Router,
     private usuarioService: UsuarioService,
     private authService: AuthService,
@@ -79,6 +89,15 @@ export class UsuariosComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(): void {
+    this.form = this.fb.group({
+      usuariosAtivos: [true],
+    });
+
+    // Executa o carregamento sempre que o checkbox mudar
+    this.form.get('usuariosAtivos')?.valueChanges.subscribe(() => {
+      this.carregarListaUsuarios();
+    });
+
     this.carregarListaUsuarios();
   }
 
@@ -95,12 +114,18 @@ export class UsuariosComponent implements OnInit, AfterViewInit {
     this.loading = true;
     this.error = '';
 
+    const apenasAtivos = this.form.get('usuariosAtivos')?.value;
+
     this.usuarioService.getUsuarios().subscribe({
       next: (data) => {
-        this.dataSource.data = data;
+        this.dataSource.data = apenasAtivos
+          ? data.filter((u) => u.situacao === true)
+          : data;
+
         setTimeout(() => {
           this.dataSource.paginator = this.paginator;
         });
+
         this.loading = false;
       },
       error: (error) => {
@@ -147,6 +172,12 @@ export class UsuariosComponent implements OnInit, AfterViewInit {
           },
         });
       }
+    });
+  }
+
+  visualizarUsuario(id: number): void {
+    this.router.navigate([`/usuarios/cadastrar-usuario/${id}`], {
+      queryParams: { modo: 'visualizar' },
     });
   }
 

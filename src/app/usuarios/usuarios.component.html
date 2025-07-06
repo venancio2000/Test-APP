@@ -22,19 +22,28 @@
         </mat-toolbar>
       </div>
 
-      <div class="content" style="padding-top: 0px;">
-        <mat-form-field>
-          <mat-label>Pesquisa</mat-label>
-          <input
-            matInput
-            (keyup)="applyFilter($event)"
-            placeholder="Ex. ium"
-            #input
-          />
-        </mat-form-field>
-      </div>
+      <form [formGroup]="form">
+        <div class="content" style="padding-top: 0px">
+          <mat-form-field>
+            <mat-label>Palavra Chave</mat-label>
+            <input
+              matInput
+              (keyup)="applyFilter($event)"
+              placeholder="Ex. ium"
+              #input
+            />
+          </mat-form-field>
+          <div class="toolbar-left">
+            <section>
+              <mat-checkbox formControlName="usuariosAtivos">
+                Usuários ativos
+              </mat-checkbox>
+            </section>
+          </div>
+        </div>
+      </form>
 
-      <div class="content" style="padding-top: 0px;">
+      <div class="content" style="padding-top: 0px">
         @if (loading) {
         <div class="loading-spinner">
           <mat-spinner></mat-spinner>
@@ -61,15 +70,17 @@
 
           <!-- ID Funcional -->
           <ng-container matColumnDef="idFuncional">
-            <th mat-header-cell *matHeaderCellDef>ID Funcional</th>
-            <td mat-cell *matCellDef="let usuario">{{ usuario.idFuncional }}</td>
+            <th mat-header-cell *matHeaderCellDef>ID FUNCIONAL</th>
+            <td mat-cell *matCellDef="let usuario">
+              {{ usuario.idFuncional }}
+            </td>
           </ng-container>
 
           <!-- Departamento -->
           <ng-container matColumnDef="departamento">
-            <th mat-header-cell *matHeaderCellDef>DEPARTAMENTO</th>
+            <th mat-header-cell *matHeaderCellDef>DEPARTAMENTO/ÁREA</th>
             <td mat-cell *matCellDef="let usuario">
-              {{ usuario.departamento }}
+              {{ usuario.departamento.nome }}
             </td>
           </ng-container>
 
@@ -97,6 +108,13 @@
           <ng-container matColumnDef="acoes">
             <th mat-header-cell *matHeaderCellDef>AÇÕES</th>
             <td mat-cell *matCellDef="let usuario">
+              <button
+                mat-icon-button
+                color="accent"
+                (click)="visualizarUsuario(usuario.id)"
+              >
+                <mat-icon>visibility</mat-icon>
+              </button>
               <button
                 *ngIf="usuario.situacao"
                 mat-icon-button
@@ -135,12 +153,14 @@
 
       <div class="content">
         <mat-toolbar>
-          <mat-paginator
-            [pageSize]="5"
-            [pageSizeOptions]="[5, 10, 25]"
-            showFirstLastButtons
-            [length]="dataSource.filteredData.length"
-          ></mat-paginator>
+          <div style="display: flex; justify-content: flex-end; width: 100%">
+            <mat-paginator
+              [pageSize]="5"
+              [pageSizeOptions]="[5, 10, 25]"
+              showFirstLastButtons
+              [length]="dataSource.filteredData.length"
+            ></mat-paginator>
+          </div>
         </mat-toolbar>
       </div>
     </div>
