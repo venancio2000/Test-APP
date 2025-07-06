@@ -14,10 +14,10 @@ import { ConfigService } from '../../config/config.service';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
-import { MatSidenavModule } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-redefinir-senha',
+  standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,

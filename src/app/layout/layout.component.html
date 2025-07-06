@@ -64,9 +64,15 @@
         }}</mat-icon>
       </a>
       <div *ngIf="submenuOpen === 'cadastro'" class="submenu">
-        <a mat-list-item routerLink="/usuarios">Usuários</a>
-        <a mat-list-item routerLink="/universidades">Universidade</a>
-        <a mat-list-item routerLink="/estudantes">Estudante</a>
+        <a mat-list-item routerLink="/usuarios"
+          ><span class="submenuItem">Usuários</span></a
+        >
+        <a mat-list-item routerLink="/universidades"
+          ><span class="submenuItem">Universidade</span></a
+        >
+        <a mat-list-item routerLink="/estudantes"
+          ><span class="submenuItem">Estudante</span></a
+        >
       </div>
 
       <!-- Requerimentos com submenu -->
@@ -79,10 +85,10 @@
       </a>
       <div *ngIf="submenuOpen === 'requerimentos'" class="submenu">
         <a mat-list-item routerLink="/novo-requerimento"
-          >Solicitar Cartão Cidadão</a
+          ><span class="submenuItem">Solicitar Cartão Cidadão</span></a
         >
         <a mat-list-item routerLink="/meus-requerimentos"
-          >Gerar Arquivo de Pagamento</a
+          ><span class="submenuItem">Gerar Arquivo de Pagamento</span></a
         >
       </div>
 
@@ -95,15 +101,15 @@
         }}</mat-icon>
       </a>
       <div *ngIf="submenuOpen === 'documentos'" class="submenu">
-        <a mat-list-item routerLink="/novo-requerimento">Termo de Outorga</a>
+        <a mat-list-item routerLink="/novo-requerimento"><span class="submenuItem">Termo de Outorga</span></a>
         <a mat-list-item routerLink="/meus-requerimentos"
-          >Informe de Rendimentos</a
+          ><span class="submenuItem">Informe de Rendimentos</span></a
         >
         <a mat-list-item routerLink="/meus-requerimentos"
-          >Atestado de vínculo</a
+          ><span class="submenuItem">Atestado de vínculo</span></a
         >
         <a mat-list-item routerLink="/meus-requerimentos"
-          >Upload de Documentos</a
+          ><span class="submenuItem">Upload de Documentos</span></a
         >
       </div>
 
@@ -124,7 +130,7 @@
           mat-list-item
           routerLink="/novo-requerimento"
           title="Envio de notificações para universidades"
-          >Envio para universidades</a
+          ><span class="submenuItem">Envio para universidades</span></a
         >
       </div>
     </mat-nav-list>

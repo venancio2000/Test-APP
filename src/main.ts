@@ -8,10 +8,10 @@ import { provideNgxMask } from 'ngx-mask';
 bootstrapApplication(AppComponent, {
   ...appConfig,
   providers: [
-    ...(appConfig.providers ?? []),
+    ...appConfig.providers ?? [],
     provideHttpClient(
       withInterceptors([authInterceptor])
     ),
-    provideNgxMask(),
+    provideNgxMask()
   ]
 }).catch(err => console.error(err));

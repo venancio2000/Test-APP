@@ -47,6 +47,10 @@
   font-size: 14px;
 }
 
+.submenuItem {
+  color: #FFFFFF !important;
+}
+
 .arrow {
   margin-left: auto;
 }
@@ -163,6 +167,7 @@ footer .logo-estado {
 .alinhamento {
   display: table-caption;
   padding-left: 10px;
+  color: #FFFFFF;
 }
 
 .sidenav-container {
@@ -179,3 +184,11 @@ footer .logo-estado {
 
 }
 
+mat-sidenav {
+  background: #00564c;
+  height: 600px;
+}
+
+mat-icon {
+  color: #24E8BA;
+}

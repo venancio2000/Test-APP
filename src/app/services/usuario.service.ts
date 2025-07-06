@@ -15,6 +15,7 @@ interface Usuario {
   createdAt: string;
   cpf: string;
   departamento?: string;
+  situacao: boolean;
 }
 
 @Injectable({
@@ -96,7 +97,9 @@ export class UsuarioService {
     });
     return this.http
       .put<UsuarioModel>(
-        `${this.config.apiUrl}/${this.endpoint}/${id}`, usuario, {
+        `${this.config.apiUrl}/${this.endpoint}/${id}`,
+        usuario,
+        {
           headers,
         }
       )
@@ -132,5 +135,17 @@ export class UsuarioService {
 
   listarPerfis(): Observable<any[]> {
     return this.http.get<any[]>(`${this.config.apiUrl}/perfis`);
+  }
+
+  listarDepartamentos(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.config.apiUrl}/departamentos`);
+  }
+
+  verificarExistenciaCpf(cpf: string): Observable<boolean> {
+    return this.http.get<boolean>(`${this.config.apiUrl}/users/existe/${cpf}`);
+  }
+
+  verificarExistenciaEmail(email: string): Observable<boolean> {
+    return this.http.get<boolean>(`${this.config.apiUrl}/users/verificaemail/${email}`);
   }
 }
