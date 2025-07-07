@@ -166,7 +166,7 @@ body {
   display: flex;
   justify-content: center;
   position: fixed;
-  bottom: 160px;
+  bottom: 125px;
   left: 0;
   width: 100%;
   z-index: 10;
@@ -312,8 +312,6 @@ footer {
   padding: 1rem 3rem;
   font-size: 0.9rem;
   flex-wrap: wrap;
-  position: relative;
-  z-index: 50;
 }
 
 .footer-texto {
@@ -360,7 +358,7 @@ footer .logo-estado {
 
   .container {
     min-height: auto;
-    padding: 0 1rem;
+    padding: 0 0rem;
     margin-bottom: 0;
   }
 
@@ -393,6 +391,31 @@ footer .logo-estado {
   .top-nav {
     margin-bottom: 0;
     padding-bottom: 0;
+  }
+
+  .left .logos {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .left footer {
+    font-size: 0.75rem;
+  }
+
+  .logo-estado-mobile {
+    display: block;
+    width: 200px;
+    margin-top: 2rem;
+  }
+
+  .logos,
+  .logo-estado-web {
+    display: none;
+  }
+
+   .left, .right {
+    width: 100%;
+    align-items: center;
   }
 
   .form {
@@ -476,7 +499,7 @@ footer .logo-estado {
 
 /* Ajustes específicos para telas muito baixas */
 @media (max-height: 700px) {
-  .students {
+  .students img {
     width: clamp(400px, 50vw, 700px);
   }
 }
@@ -491,50 +514,4 @@ footer .logo-estado {
 footer {
   position: relative;
   z-index: 50;
-}
-
-.logo-estado-mobile {
-  display: block;
-  width: 200px;
-  margin-top: 2rem;
-}
-
-.logos,
-.logo-estado-web {
-  display: none;
-}
-
- .left, .right {
-  width: 100%;
-  align-items: center;
-}
-  .left {
-    display: none;
-  }
-
-  .left .logos {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .left footer {
-    font-size: 0.75rem;
-  }
-  .logo-estado-mobile {
-    display: block;
-    width: 200px;
-    margin-top: 2rem;
-  }
-
-  .logos,
-  .students img,
-  .logo-estado-web {
-    display: none;
-  }
-
-  .left, .right {
-    width: 100%;
-    align-items: center;
-  }
-
 }
