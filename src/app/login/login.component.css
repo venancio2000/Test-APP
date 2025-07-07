@@ -373,120 +373,117 @@ footer .logo-estado {
   }
 
   .container {
-    min-height: auto;
-    padding: 0 0rem;
-    margin-bottom: 0;
+    flex-direction: column;
+    min-height: calc(100vh - 160px);
+    padding: 1rem;
   }
 
-
-  .right {
-    width: 100%;
-    margin-top: -1.5rem;
-    padding-top: 0;
-  }
   .left {
     display: none;
   }
-  .left .logos {
-    flex-direction: column;
-    align-items: center;
+
+  .right {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
   }
 
-  .left footer {
-    font-size: 0.75rem;
-  }
   .logo-estado-mobile {
     display: block;
-    width: 200px;
-    margin-top: 2rem;
+    height: 80px;
+    margin: 1rem auto;
   }
 
-  .logos,
-  .students img,
-  .logo-estado-web
-  {
-  display: none;
+  .logo-estado-web {
+    display: none;
   }
-   .left, .right {
-    width: 100%;
-    align-items: center;
-  }
+
   .form {
-    border-top: 4px solid #b0b0b1;
-    border-radius: 0;
-    margin-top: 0.5rem;
-    padding: 0.5rem;
+    margin: 0;
+    padding: 1.5rem;
     width: 100%;
-    max-width: 500px;
-    text-align: center;
+    max-width: 400px;
+    border-radius: 15px;
   }
 
-  .form h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+  .titulo-login-svg {
+    max-width: 220px;
+    margin: 1rem auto;
   }
+
   input {
-    max-width: 350px;
-    padding: 0.9rem;
-    border-radius: 5px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    margin: 0 auto 1rem auto;
-    display: block;
+    padding: 0.8rem;
+    font-size: 16px; /* Evita zoom no iOS */
   }
-  input::placeholder {
-    color: #888;
+
+  button {
+    padding: 0.8rem;
     font-size: 0.95rem;
   }
 
-   button {
-    max-width: 230px;
-    font-size: 0.9rem;
-    padding: 0.6rem 1rem;
-    border-radius: 25px;
-  }
   hr {
-    width: 80%;
-    margin: 1.5rem auto;
-    border-top: 2px solid #ccc;
-  }
-  .govbr-button,
-  .acessar-button {
-    margin: 0 auto;
-  }
-
-  .govbr-button i,
-  .acessar-button i {
-    font-size: 0.9rem;
+    margin: 1.5rem 0;
   }
 
   .section {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .login-title {
+    font-size: 1rem;
   }
 
   footer {
     flex-direction: column;
-    align-items: center;
-    padding: 1rem 0.5rem;
-  }
-
-  .footer-texto-p1 {
-  font-size: 15px;
-  margin-bottom: 0.3rem;
-
+    text-align: center;
+    padding: 1rem;
   }
 
   .footer-texto {
-    max-width: 100%;
-    text-align: center;
-    font-size: 13px;
-    line-height: 1.3
+    font-size: 12px;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+  }
+
+  .footer-texto-p1 {
+    font-size: 14px;
   }
 
   footer .logo-estado {
-    max-width: 170px;
-    height: auto;
-    margin-bottom: 0.5;
+    height: 80px;
+    width: auto;
+  }
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    padding: 2rem;
   }
 
+  .left {
+    width: 60%;
+  }
+
+  .right {
+    width: 40%;
+  }
+
+  .students img {
+    max-width: 600px;
+    margin-left: -20%;
+  }
+
+  .form {
+    max-width: 320px;
+  }
+
+  .logos {
+    gap: 1.5rem;
+  }
+
+  .logo-rs-talentos,
+  .logo-professor {
+    height: 100px;
+  }
 }
