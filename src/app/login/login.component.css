@@ -129,7 +129,7 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  min-height: calc(100vh - 160px);
+  flex: 1;
   padding: 0 4rem;
 }
 
@@ -354,7 +354,8 @@ footer .logo-estado {
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
-    min-height: calc(100vh - 160px);
+    flex: 1;
+    justify-content: center;
     padding: 0 1rem;
   }
 
@@ -535,7 +536,8 @@ footer .logo-estado {
 @media (max-width: 768px) and (orientation: landscape) {
   .container {
     flex-direction: row;
-    min-height: calc(100vh - 120px);
+    flex: 1;
+    justify-content: center;
   }
 
   .left {
@@ -593,9 +595,6 @@ footer .logo-estado {
     display: none;
   }
 
-  .container {
-    min-height: calc(100vh - 140px);
-  }
 }
 
 /* Melhorias de acessibilidade e usabilidade */
