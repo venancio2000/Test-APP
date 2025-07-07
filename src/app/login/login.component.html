@@ -16,7 +16,7 @@
       [class.active]="mobileMenuOpen" 
       (click)="toggleMobileMenu()"
       aria-label="Toggle mobile menu"
-      aria-expanded="{{mobileMenuOpen}}"
+      [attr.aria-expanded]="mobileMenuOpen"
       aria-controls="mobile-menu"
     >
       <span class="hamburger-line" aria-hidden="true"></span>
@@ -143,7 +143,7 @@
                 required
                 autocomplete="username"
                 aria-describedby="cpf-error"
-                [class.error]="cpfError"
+                [class.error]="cpfError !== ''"
                 (blur)="validateCpf()"
                 (input)="clearCpfError()"
               />
@@ -164,7 +164,7 @@
                   required
                   autocomplete="current-password"
                   aria-describedby="senha-error"
-                  [class.error]="senhaError"
+                  [class.error]="senhaError !== ''"
                   (blur)="validateSenha()"
                   (input)="clearSenhaError()"
                 />
