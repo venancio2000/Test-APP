@@ -165,20 +165,20 @@ body {
 .students {
   display: flex;
   justify-content: center;
-  position: fixed;
-  bottom: 0;
-  left: 0;
   width: 100%;
-  z-index: 10;
-  pointer-events: none;
+  align-items: flex-end;
+  text-align: center;
+  margin-top: 10%;
+  padding-bottom: auto;
 }
 
 .students img {
-  width: clamp(600px, 60vw, 970px);
-  height: auto;
-  object-fit: contain;
-  image-rendering: high-quality;
-  transition: all 0.3s ease;
+  max-width: 970px;
+  max-height: 900px;
+  margin-left: -37%;
+  margin-top: -5%;
+  margin: 0 auto; /* <-- Centraliza a imagem */
+
 }
 
 .right {
@@ -352,10 +352,6 @@ footer .logo-estado {
 
 /* Responsivo */
 @media (max-width: 768px) {
-  .students {
-    display: none; /* Esconde a imagem em dispositivos móveis */
-  }
-
   .desktop-nav {
     display: none;
   }
@@ -399,7 +395,6 @@ footer .logo-estado {
   .left footer {
     font-size: 0.75rem;
   }
-
   .logo-estado-mobile {
     display: block;
     width: 200px;
@@ -407,10 +402,11 @@ footer .logo-estado {
   }
 
   .logos,
-  .logo-estado-web {
-    display: none;
+  .students img,
+  .logo-estado-web
+  {
+  display: none;
   }
-
    .left, .right {
     width: 100%;
     align-items: center;
@@ -492,23 +488,5 @@ footer .logo-estado {
     height: auto;
     margin-bottom: 0.5;
   }
-}
 
-/* Ajustes específicos para telas muito baixas */
-@media (max-height: 700px) {
-  .students img {
-    width: clamp(400px, 50vw, 700px);
-  }
-}
-
-@media (max-height: 500px) {
-  .students {
-    display: none;
-  }
-}
-
-/* Garantir que o footer tenha espaço adequado */
-footer {
-  position: relative;
-  z-index: 50;
 }
