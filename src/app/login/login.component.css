@@ -175,16 +175,22 @@ html, body {
 .students {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
-  flex: 1;
-  min-height: 200px;
+  position: fixed;
+  bottom: 100px;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  pointer-events: none;
+  margin-top: auto;
 }
 
 .students img {
-  width: clamp(300px, 60vw, 800px);
+  width: clamp(700px, 75vw, 1100px);
+  transform: translateX(-150px);
   height: auto;
-  max-height: 400px;
   object-fit: contain;
+  image-rendering: high-quality;
+  transition: all 0.3s ease;
 }
 
 .right {
