@@ -23,6 +23,9 @@ export class LoginComponent {
   cpf: string = '';
   senha: string = '';
   loading = false;
+  showPassword = false;
+  cpfError: string = '';
+  senhaError: string = '';
 
   // ✅ Controle do menu mobile
   mobileMenuOpen: boolean = false;
@@ -40,7 +43,70 @@ export class LoginComponent {
     private dialog: MatDialog
   ) {}
 
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+  }
+
+  validateCpf(): void {
+    const cpf = this.cpf.replace(/\D/g, '');
+    
+    if (!this.cpf.trim()) {
+      this.cpfError = 'CPF é obrigatório';
+      return;
+    }
+    
+    if (cpf.length !== 11) {
+      this.cpfError = 'CPF deve ter 11 dígitos';
+      return;
+    }
+    
+    // Validação básica de CPF
+    if (/^(\d)\1+$/.test(cpf)) {
+      this.cpfError = 'CPF inválido';
+      return;
+    }
+    
+    this.cpfError = '';
+  }
+
+  validateSenha(): void {
+    if (!this.senha.trim()) {
+      this.senhaError = 'Senha é obrigatória';
+      return;
+    }
+    
+    if (this.senha.length < 6) {
+      this.senhaError = 'Senha deve ter pelo menos 6 caracteres';
+      return;
+    }
+    
+    this.senhaError = '';
+  }
+
+  clearCpfError(): void {
+    this.cpfError = '';
+  }
+
+  clearSenhaError(): void {
+    this.senhaError = '';
+  }
+
+  isFormValid(): boolean {
+    return this.cpf.trim() !== '' && 
+           this.senha.trim() !== '' && 
+           !this.cpfError && 
+           !this.senhaError;
+  }
+
   fazerLogin() {
+    // Validate form before submission
+    this.validateCpf();
+    this.validateSenha();
+    
+    if (!this.isFormValid()) {
+      return;
+    }
+
     this.loading = true;
     const loginData = {
       cpf: this.cpf,

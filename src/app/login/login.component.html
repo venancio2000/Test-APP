@@ -1,122 +1,245 @@
 <!-- Top Navigation Bar -->
-<nav class="top-nav">
+<nav class="top-nav" role="navigation" aria-label="Main navigation">
   <div class="nav-container">
     <div class="nav-brand">rs.gov.br</div>
     <div class="nav-links desktop-nav">
-      <a href="#" class="nav-link">NOTÍCIAS</a>
-      <a href="#" class="nav-link">SERVIÇOS</a>
-      <a href="#" class="nav-link">CENTRAL DO CIDADÃO</a>
-      <a href="#" class="nav-link">TRANSPARÊNCIA</a>
-      <a href="#" class="nav-link">SECRETARIAS E ÓRGÃOS</a>
-      <a href="#" class="nav-link">DIÁRIO OFICIAL</a>
-      <a href="#" class="nav-link">>> SOS RS <<</a>
+      <a href="#" class="nav-link" tabindex="0">NOTÍCIAS</a>
+      <a href="#" class="nav-link" tabindex="0">SERVIÇOS</a>
+      <a href="#" class="nav-link" tabindex="0">CENTRAL DO CIDADÃO</a>
+      <a href="#" class="nav-link" tabindex="0">TRANSPARÊNCIA</a>
+      <a href="#" class="nav-link" tabindex="0">SECRETARIAS E ÓRGÃOS</a>
+      <a href="#" class="nav-link" tabindex="0">DIÁRIO OFICIAL</a>
+      <a href="#" class="nav-link emergency" tabindex="0">>> SOS RS <<</a>
     </div>
-    <button class="hamburger-menu" [class.active]="mobileMenuOpen" (click)="toggleMobileMenu()">
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
+    <button 
+      class="hamburger-menu" 
+      [class.active]="mobileMenuOpen" 
+      (click)="toggleMobileMenu()"
+      aria-label="Toggle mobile menu"
+      aria-expanded="{{mobileMenuOpen}}"
+      aria-controls="mobile-menu"
+    >
+      <span class="hamburger-line" aria-hidden="true"></span>
+      <span class="hamburger-line" aria-hidden="true"></span>
+      <span class="hamburger-line" aria-hidden="true"></span>
     </button>
   </div>
 
   <!-- Mobile Menu -->
-  <div class="mobile-menu" [class.active]="mobileMenuOpen">
-    <a href="#" class="mobile-nav-link">NOTÍCIAS</a>
-    <a href="#" class="mobile-nav-link">SERVIÇOS</a>
-    <a href="#" class="mobile-nav-link">CENTRAL DO CIDADÃO</a>
-    <a href="#" class="mobile-nav-link">TRANSPARÊNCIA</a>
-    <a href="#" class="mobile-nav-link">SECRETARIAS E ÓRGÃOS</a>
-    <a href="#" class="mobile-nav-link">DIÁRIO OFICIAL</a>
-    <a href="#" class="mobile-nav-link">>> SOS RS <<</a>
+  <div 
+    class="mobile-menu" 
+    [class.active]="mobileMenuOpen"
+    id="mobile-menu"
+    role="menu"
+    [attr.aria-hidden]="!mobileMenuOpen"
+  >
+    <a href="#" class="mobile-nav-link" role="menuitem" tabindex="0">NOTÍCIAS</a>
+    <a href="#" class="mobile-nav-link" role="menuitem" tabindex="0">SERVIÇOS</a>
+    <a href="#" class="mobile-nav-link" role="menuitem" tabindex="0">CENTRAL DO CIDADÃO</a>
+    <a href="#" class="mobile-nav-link" role="menuitem" tabindex="0">TRANSPARÊNCIA</a>
+    <a href="#" class="mobile-nav-link" role="menuitem" tabindex="0">SECRETARIAS E ÓRGÃOS</a>
+    <a href="#" class="mobile-nav-link" role="menuitem" tabindex="0">DIÁRIO OFICIAL</a>
+    <a href="#" class="mobile-nav-link emergency" role="menuitem" tabindex="0">>> SOS RS <<</a>
   </div>
 </nav>
 
-<!-- Original Layout Container -->
-<div class="container">
-  <div class="left">
-    <div class="branding">
-      <div class="logos">
+<!-- Main Content Container -->
+<main class="main-container" role="main">
+  <div class="content-wrapper">
+    <!-- Left Side - Branding -->
+    <section class="branding-section" aria-label="Branding and imagery">
+      <div class="logos-container">
         <img
           class="logo-rs-talentos"
           src="assets/logo-rs-talentos.png"
-          alt="RS Talentos"
+          alt="RS Talentos - Programa de desenvolvimento de talentos do Rio Grande do Sul"
+          loading="lazy"
         />
         <img
           class="logo-professor"
           src="assets/logo-professor-do-amanha.png"
-          alt="Professor do Amanhã"
+          alt="Professor do Amanhã - Programa de formação de professores"
+          loading="lazy"
         />
       </div>
-      <div class="students">
-        <img src="assets/students.png" alt="Estudantes" />
+      <div class="students-container">
+        <img 
+          src="assets/students.png" 
+          alt="Estudantes universitários representando o programa Professor do Amanhã"
+          loading="lazy"
+        />
       </div>
-    </div>
-  </div>
+    </section>
 
-  <div class="right">
-    <img class="logo-estado-web" src="assets/logo-rs-estado.png" alt="Logo RS" />
-    <img class="logo-estado-mobile" src="assets/logo-rs-estado-interno.png" alt="Logo RS" />
-    <div class="form">
-      <img src="assets/SISTEMA GESTÃO DE BOLSAS.svg" alt="Sistema Gestão de Bolsas" class="titulo-login-svg" />
-      <div class="login-box">
-        <div class="section">
-          <p class="login-title"><span class="azul">Login</span> Bolsista</p>
-          <p>
-            Para <strong>criar</strong> ou <strong>acessar</strong> sua conta
-            Egov:
+    <!-- Right Side - Login Form -->
+    <section class="login-section" aria-label="Login form">
+      <div class="form-header">
+        <img 
+          class="logo-estado-desktop" 
+          src="assets/logo-rs-estado.png" 
+          alt="Governo do Estado do Rio Grande do Sul"
+          loading="lazy"
+        />
+        <img 
+          class="logo-estado-mobile" 
+          src="assets/logo-rs-estado-interno.png" 
+          alt="Governo do Estado do Rio Grande do Sul"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="form-container" role="region" aria-label="Login options">
+        <img 
+          src="assets/SISTEMA GESTÃO DE BOLSAS.svg" 
+          alt="Sistema de Gestão de Bolsas" 
+          class="system-title"
+          loading="lazy"
+        />
+        
+        <!-- Gov.br Login Section -->
+        <div class="login-section-block">
+          <h2 class="section-title">
+            <span class="highlight">Login</span> Bolsista
+          </h2>
+          <p class="section-description">
+            Para <strong>criar</strong> ou <strong>acessar</strong> sua conta Egov:
           </p>
-          <br />
-          <button class="govbr-button">
-            <i class="fas fa-user"></i>Entrar com gov.br
-          </button>
-        </div>
-
-        <hr />
-
-        <div class="section">
-          <p class="login-title">
-            <span class="azul">Login</span> Institucional
-          </p>
-          <input
-            type="text"
-            placeholder="CPF"
-            [(ngModel)]="cpf"
-            name="cpf"
-            mask="000.000.000-00"
-          />
-          <input
-            type="password"
-            placeholder="Senha"
-            [(ngModel)]="senha"
-            name="senha"
-          />
-          <button
-            (click)="fazerLogin()"
-            class="acessar-button"
-            [disabled]="loading"
+          <button 
+            class="govbr-button"
+            type="button"
+            aria-label="Entrar com conta gov.br"
           >
-            @if (!loading) {
-            <i class="fas fa-user"></i> Acessar } @if (loading) {
-            <i class="fas fa-spinner fa-spin"></i> Carregando... }
+            <i class="fas fa-user" aria-hidden="true"></i>
+            <span>Entrar com gov.br</span>
           </button>
-          <p class="esqueci-senha">
-            <a (click)="abrirDialogEsqueciSenha()">Esqueci minha senha</a>
-          </p>
+        </div>
+
+        <div class="divider" role="separator" aria-hidden="true">
+          <hr>
+        </div>
+
+        <!-- Institutional Login Section -->
+        <div class="login-section-block">
+          <h2 class="section-title">
+            <span class="highlight">Login</span> Institucional
+          </h2>
+          
+          <form 
+            (ngSubmit)="fazerLogin()" 
+            #loginForm="ngForm"
+            class="login-form"
+            novalidate
+            aria-label="Formulário de login institucional"
+          >
+            <div class="form-group">
+              <label for="cpf" class="sr-only">CPF</label>
+              <input
+                id="cpf"
+                type="text"
+                placeholder="CPF"
+                [(ngModel)]="cpf"
+                name="cpf"
+                mask="000.000.000-00"
+                required
+                autocomplete="username"
+                aria-describedby="cpf-error"
+                [class.error]="cpfError"
+                (blur)="validateCpf()"
+                (input)="clearCpfError()"
+              />
+              <div id="cpf-error" class="error-message" *ngIf="cpfError" role="alert">
+                {{ cpfError }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="senha" class="sr-only">Senha</label>
+              <div class="password-container">
+                <input
+                  id="senha"
+                  [type]="showPassword ? 'text' : 'password'"
+                  placeholder="Senha"
+                  [(ngModel)]="senha"
+                  name="senha"
+                  required
+                  autocomplete="current-password"
+                  aria-describedby="senha-error"
+                  [class.error]="senhaError"
+                  (blur)="validateSenha()"
+                  (input)="clearSenhaError()"
+                />
+                <button
+                  type="button"
+                  class="password-toggle"
+                  (click)="togglePasswordVisibility()"
+                  [attr.aria-label]="showPassword ? 'Ocultar senha' : 'Mostrar senha'"
+                  tabindex="0"
+                >
+                  <i [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'" aria-hidden="true"></i>
+                </button>
+              </div>
+              <div id="senha-error" class="error-message" *ngIf="senhaError" role="alert">
+                {{ senhaError }}
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              class="login-button"
+              [disabled]="loading || !isFormValid()"
+              [attr.aria-label]="loading ? 'Fazendo login...' : 'Fazer login'"
+            >
+              <span *ngIf="!loading" class="button-content">
+                <i class="fas fa-user" aria-hidden="true"></i>
+                <span>Acessar</span>
+              </span>
+              <span *ngIf="loading" class="button-content loading">
+                <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
+                <span>Carregando...</span>
+              </span>
+            </button>
+
+            <div class="forgot-password">
+              <button
+                type="button"
+                class="link-button"
+                (click)="abrirDialogEsqueciSenha()"
+                aria-label="Recuperar senha esquecida"
+              >
+                Esqueci minha senha
+              </button>
+            </div>
+          </form>
         </div>
       </div>
+    </section>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer role="contentinfo" aria-label="Informações de contato">
+  <div class="footer-content">
+    <div class="footer-text">
+      <h3 class="footer-title">Secretaria de Inovação, Ciência e Tecnologia</h3>
+      <address>
+        <p>Av. Borges de Medeiros, 1501 - 18º andar - Bairro Praia de Belas</p>
+        <p>Centro Administrativo Fernando Ferrari</p>
+        <p>Porto Alegre/RS</p>
+      </address>
     </div>
+    <img
+      class="footer-logo"
+      src="assets/logo-rs-estado-footer.png"
+      alt="Governo do Estado do Rio Grande do Sul"
+      loading="lazy"
+    />
+  </div>
+</footer>
+
+<!-- Loading Overlay -->
+<div class="loading-overlay" *ngIf="loading" role="status" aria-label="Carregando">
+  <div class="loading-spinner">
+    <div class="spinner"></div>
+    <p>Fazendo login...</p>
   </div>
 </div>
-
-<footer>
-  <div class="footer-texto">
-    <p class="footer-texto-p1">Secretaria de Inovação, Ciência e Tecnologia</p>
-    <p>Av. Borges de Medeiros, 1501 - 18º andar - Bairro Praia de Belas</p>
-    <p>Centro Administrativo Fernando Ferrari</p>
-    <p>Porto Alegre/RS</p>
-  </div>
-  <img
-    class="logo-estado"
-    src="assets/logo-rs-estado-footer.png"
-    alt="Logo RS"
-  />
-</footer>
